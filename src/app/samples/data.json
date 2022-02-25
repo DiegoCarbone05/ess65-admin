@@ -1,0 +1,25 @@
+{
+  "webConfigPage":{
+
+    "bannerData":{
+      "text":"Los viajes creativos comienzan aquí",
+      "contentAlign":"",
+      "colorText":"#FFFFFF",
+      "titleSize":"40px",
+      "bannerImg":"/assets/ilustrator/photo-1497864149936-d3163f0c0f4b.jpg",
+      "btnStatus":true,
+      "btnColor":"#FFFFFF",
+      "colorTextBtn":"#000000",
+      "urlBtn":""
+    },
+
+    "alertData": {
+      "alertStatus":true,
+      "alertColor":"warn",
+      "alertTextAling":"left",
+      "alertPrefix":"Noticia",
+      "alertText":"Noticia | AlertComponent",
+      "alertTextAutomaticColor":"#000"
+    }
+  }
+}

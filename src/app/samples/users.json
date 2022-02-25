@@ -1,0 +1,29 @@
+{
+  "users":[
+    {
+      "name":"DiegoCarbone05",
+      "dni":"424611775644",
+      "course":"5 Año",
+      "turn":"B",
+      "role":"admin",
+      "schoolRol":"alumn"
+    },
+    {
+      "name":"RomanMachetti",
+      "dni":"85621436",
+      "course":"",
+      "turn":"",
+      "role":"usuario",
+      "schoolRol":"profesor"
+    },
+    {
+      "name":"GonzaloDeCastro",
+      "dni":"25564112",
+      "course":"",
+      "turn":"",
+      "role":"usuario",
+      "schoolRol":"profesor"
+    }
+
+  ]
+}

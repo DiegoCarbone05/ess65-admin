@@ -1,0 +1,41 @@
+<main>
+  <div class="title-component">
+    <div class="title-container">
+      <p class="title">Configuracion del Banner</p>
+      <cne-win-slide  [externalStatus]="alertData.alertStatus" (statusChange)="setStatusBtn($event)"></cne-win-slide>
+    </div>
+    <button (click)="saveChanges()" class="cne-metro-button">Guardar cambios</button>
+
+  </div>
+  <div class="alert-preview">
+    <div [class]="alertData.alertColor" class="alert" [style]="'justify-content:'+alertData.alertTextAling+';'">
+      <span [style]="'color:' +alertData.alertTextAutomaticColor+ ';'" class="text">
+        <strong [style]="'color:' +alertData.alertTextAutomaticColor+ ';'">
+          {{alertData.alertPrefix}}
+        </strong>
+        <p [style]="'color:' +alertData.alertTextAutomaticColor+ ';'">&nbsp; | &nbsp;</p>
+        <p [style]="'color:' +alertData.alertTextAutomaticColor+ ';'">AlertComponent</p>
+      </span>
+    </div>
+  </div>
+
+  <div class="alert-controls">
+    <button class="control-bar-btn" (click)="changeAlingText('left')"><i class="mdl2-align-left"></i></button>
+    <button class="control-bar-btn" (click)="changeAlingText('center')"><i class="mdl2-align-center"></i></button>
+
+    <button class="control-bar-btn" (click)="changeAlertColor('warn')"><div class="color-select warn"></div></button>
+    <button class="control-bar-btn" (click)="changeAlertColor('danger')"><div class="color-select danger"></div></button>
+    <button class="control-bar-btn" (click)="changeAlertColor('info')"><div class="color-select info"></div></button>
+    <button class="control-bar-btn" (click)="changeAlertColor('success')"><div class="color-select success"></div></button>
+    <button class="control-bar-btn" (click)="changeAlertColor('defaultColor')"><div class="color-select defaultColor"></div></button>
+
+    <button class="control-bar-btn btn-adaptable" dark [matMenuTriggerFor]="menu">Tipo de anuncio</button>
+    <mat-menu dark #menu="matMenu">
+      <button mat-menu-item (click)="changeAlertPrefix('Noticia')">Noticia</button>
+      <button mat-menu-item (click)="changeAlertPrefix('Aviso')">Aviso</button>
+      <button mat-menu-item (click)="changeAlertPrefix('Anuncio')">Anuncio</button>
+      <button mat-menu-item (click)="changeAlertPrefix('Informacion')">Informacion</button>
+    </mat-menu>
+  </div>
+
+</main>

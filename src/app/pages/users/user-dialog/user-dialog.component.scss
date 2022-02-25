@@ -1,0 +1,40 @@
+.wrap-add-user{
+  min-width: 400px;
+  display: flex;
+  padding-bottom: 60px;
+  flex-direction: column;
+  position: relative;
+
+  .title{
+    font-size: 25px;
+    height: fit-content;
+    margin: 0;
+    margin-top: 20px;
+  }
+
+  .divider-title{
+    margin-top: 0;
+    margin-bottom: 0;
+    color: rgba(119, 119, 119, 0.685);
+  }
+  input{
+    width: 100%;
+    font-size: 17px;
+
+  }
+  .btn-save{
+    position: absolute;
+    bottom: 0;
+    align-self: flex-end;
+  }
+
+
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: var(--primary-color);
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 2px;
+}

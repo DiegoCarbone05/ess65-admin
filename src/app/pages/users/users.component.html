@@ -1,0 +1,54 @@
+<cne-nav>
+  Usuarios
+  <div class="right-btn-container">
+    <button (click)="openDialog()"><i class="mdl2-add-friend"></i></button>
+  </div>
+</cne-nav>
+<mat-tab-group>
+  <!-- Sector de alumnos -->
+  <mat-tab label="Alumnos">
+    <main>
+      <p class="title">Lista de alumnos</p>
+      <table>
+        <tr>
+          <th>Nombre de usuario</th>
+          <th>DNI</th>
+          <th>Curso</th>
+          <th>Rol</th> 
+          <th>Turno</th>
+        </tr>
+        <ng-container *ngFor="let user of usersData">
+          <tr *ngIf="user.schoolRol == 'alumn'">
+            <td>{{user.name}}</td>
+            <td>{{user.dni}}</td>
+            <td>{{user.course}}</td>
+            <td>{{user.role}}</td>
+            <td>{{user.turn}}</td>
+          </tr>
+        </ng-container>
+      </table>
+    </main>
+  </mat-tab>
+  <!-- Sector de Profesores y directivos -->
+  <mat-tab label="Profesores y directivos">
+    <main>
+      <p class="title">Lista de profesores y directivos</p>
+      <table>
+        <tr>
+          <th>Nombre de usuario</th>
+          <th>DNI</th>
+          <th>Rol</th>
+        </tr>
+        <ng-container *ngFor="let user of usersData">
+          <tr *ngIf="user.schoolRol !== 'alumn'">
+            <td>{{user.name}}</td>
+            <td>{{user.dni}}</td>
+            <td>{{user.role}}</td>
+          </tr>
+        </ng-container>
+      </table>
+    </main>
+  </mat-tab>
+</mat-tab-group>
+
+

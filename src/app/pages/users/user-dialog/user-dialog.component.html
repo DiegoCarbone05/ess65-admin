@@ -1,0 +1,38 @@
+<mat-progress-bar mode="determinate" [value]="progressBarValue"></mat-progress-bar>
+<div *ngIf="currentStep" class="wrap-add-user">
+  <p class="title">Agregar usuario</p>
+  <br>
+  <cne-input [size]="'100%'"><input  placeholder="Nombre de usuario" type="text"></cne-input>
+  <br>
+  <cne-input [size]="'100%'"><input placeholder="Contraseña" type="password"></cne-input>
+  <br>
+  <cne-input [size]="'100%'"><input placeholder="DNI" type="number"></cne-input>
+
+  <button (click)="submitButton()" class="cne-metro-button btn-save">Siguiente</button>
+
+</div>
+<div *ngIf="!currentStep" class="wrap-add-user">
+  <p class="title">Agregar datos escolares</p>
+  <br>
+  <!-- <cne-input [size]="'100%'">
+    <select id="">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="opel">Opel</option>
+      <option value="audi">Audi</option>
+    </select>
+  </cne-input> -->
+  <mat-form-field appearance="fill">
+    <mat-label>Favorite food</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let food of foods" [value]="food.value">
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <button (click)="submitButton()" class="cne-metro-button btn-save">Siguiente</button>
+
+</div>
+

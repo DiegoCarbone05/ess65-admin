@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .carbone-logo{
+      margin: 10px;
+      width: 200px;
+      position: absolute;
+      justify-content: center;
+    }
+    .ess65-logo{
+      width: 150px;
+      margin: auto;
+      display: flex;
+      align-self: center;
+      margin-top: 40px;
+    }
+    .b-title{
+      position: absolute;
+      bottom: 0;
+      font-size: 16px;
+      font-weight: 100;
+      left: 15px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+    }
+
+.loader {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translateX(-50%) translateY(-50%);
+  width: 35px;
+  height: 35px;
+  margin: auto;
+}
+.loader .circle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transform: rotate(225deg);
+  animation-iteration-count: infinite;
+  animation-name: orbit;
+  animation-duration: 5.5s;
+}
+.loader .circle:after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 5px;
+  background: #fff;
+}
+.loader .circle:nth-child(2) {
+  animation-delay: 240ms;
+}
+.loader .circle:nth-child(3) {
+  animation-delay: 480ms;
+}
+.loader .circle:nth-child(4) {
+  animation-delay: 720ms;
+}
+.loader .circle:nth-child(5) {
+  animation-delay: 960ms;
+}
+.loader .bg {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  margin-left: -16px;
+  margin-top: -16px;
+  border-radius: 13px;
+  animation: bgg 16087ms ease-in alternate infinite;
+}
+@keyframes orbit {
+  0% {
+    transform: rotate(225deg);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  7% {
+    transform: rotate(345deg);
+    animation-timing-function: linear;
+  }
+  30% {
+    transform: rotate(455deg);
+    animation-timing-function: ease-in-out;
+  }
+  39% {
+    transform: rotate(690deg);
+    animation-timing-function: linear;
+  }
+  70% {
+    transform: rotate(815deg);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: rotate(945deg);
+    animation-timing-function: ease-out;
+  }
+  76% {
+    transform: rotate(945deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(945deg);
+    opacity: 0;
+  }
+}
+  </style>
+</head>
+<body style="background-color: #0063B1; display: flex; overflow: hidden;">
+  <img class="carbone-logo" src="./src/assets/icons/cneRotulo-14F22.svg" alt="">
+  <img class="ess65-logo" src="./src/assets/icons/es65AdminLogo.svg" alt="">
+  <div class='loader'>
+    <div class="bg"></div>
+    <div class='circle'></div>
+    <div class='circle'></div>
+    <div class='circle'></div>
+    <div class='circle'></div>
+    <div class='circle'></div>
+  </div>
+  <p class="b-title">Inicializando...</p>
+</body>
+</html>

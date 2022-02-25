@@ -1,0 +1,14 @@
+*{
+  -webkit-transition: all 0.6s cubic-bezier(0, 1.02, 0, 1.01);
+
+}
+
+main{
+  animation-name: slide;
+  animation-duration: 0.6s;
+}
+
+@keyframes slide {
+  0% {margin-top: 75px;}
+  100% {margin-top: 0px;}
+}

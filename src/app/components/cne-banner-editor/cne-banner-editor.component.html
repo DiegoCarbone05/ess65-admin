@@ -1,0 +1,72 @@
+<main>
+
+  <div class="title-component">
+    <div class="title-container">
+      <p class="title">Configuracion del Banner</p>
+    </div>
+    <button cne-metro-button (click)="saveChanges()" class="cne-metro-button win-btn">Guardar cambios</button>
+  </div>
+
+  <!-- Banner Preview -->
+  <div class="wrap-peview">
+    <div class="img" style="background: url({{bannerData.bannerImg}});">
+      <div class="bannerContent">
+
+        <p class="titleBanner" contenteditable [style]="'color: '+bannerData.colorText+'; font-size:'+bannerData.titleSize+'px;'">{{bannerData.text}}</p>
+
+        <button  [style]="'background-color:'+bannerData.btnColor+';'" *ngIf="bannerData.btnStatus">
+          <a href="{{bannerData.urlBtn}}">
+            <p [style]="'color:'+bannerData.colorTextBtn+';'" class="btnText">Mas Informacion</p>
+          </a>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Editor de Texto -->
+  <div class="banner-controls-editor">
+
+    <!-- Input color del texto del banner -->
+      <button class="btn-control-banner-adaptable">Color de titulo
+        <input #titleColor type="color" [formControl]="colorInput" id="colorText">
+      </button>
+
+    <!-- input del tamaño del texto del banner -->
+      <button class="btn-adaptable" > Tamaño de texto
+        <input #titleSizeInput [formControl]="titleSize" id="titleSize" class="banner-text-size-input" type="number">
+      </button>
+  </div>
+
+  <!-- Editor de Imagen -->
+  <div class="banner-controls-editor">
+    <button class="btn-control-banner-adaptable"><input type="file"></button>
+  </div>
+
+  <!-- Editor del boton -->
+  <div class="banner-controls-editor">
+
+    <!-- Toggle del boton del banner -->
+    <button class="btn-control-banner-adaptable">Habilitar boton
+
+      <cne-win-slide [externalStatus]="bannerData.btnStatus" (statusChange)="setStatusBtn($event)"></cne-win-slide>
+
+    </button>
+
+    <!-- input color del boton -->
+    <button class="btn-control-banner-adaptable">Color de boton
+      <input #btnColor type="color" [formControl]="colorBtn" id="colorBtn">
+    </button>
+
+    <!-- Input color del texto del boton -->
+    <button class="btn-control-banner-adaptable">Color de texto
+      <input #btnTextColor type="color" [formControl]="colorTextBtn" id="colorTextBtn">
+    </button>
+
+    <!-- Input url del boton -->
+    <button class="btn-adaptable">Ruta del boton
+      <input class="url-Btn-input" placeholder="Ingrese url del boton" #urlBtnInputId type="url" [formControl]="urlBtnInput" id="urlBtnInput">
+    </button>
+
+  </div>
+</main>

@@ -1,0 +1,11 @@
+.wrap-input{
+  display: flex;
+  width: fit-content;
+  padding: 5px;
+  border-bottom: 1px solid var(--tertiary-gs);
+  margin: 10px 0;
+
+  &:focus-within{
+    border-bottom: 1px solid var(--primary-color);
+  }
+}
