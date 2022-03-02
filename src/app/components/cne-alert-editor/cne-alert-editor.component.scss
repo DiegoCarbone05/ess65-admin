@@ -5,6 +5,7 @@
 }
 
 main{
+  width: 1092px;
 
   .title-component{
     width: 100%;
@@ -39,11 +40,21 @@ main{
       font-size: 15px;
       font-weight: 100;
       color: white;
+      display: flex;
+      align-items: center;
+
+      p{
+        margin: 0;
+        display: flex;
+      }
 
       &:active{
         transform: scale(0.91);
       }
 
+    }
+    .iconSaveDataMode{
+      display: none;
     }
   }
 
@@ -53,7 +64,7 @@ main{
     border: 1px var(--text-color) solid;
 
     .alert{
-      width: 1092px;
+      width: 100%;
       height: 48px;
       display: flex;
       justify-content: left;
@@ -115,3 +126,69 @@ main{
 .info{background-color: var(--info-color);}
 .success{background-color: var(--success-color);}
 .defaultColor{background-color: var(--alert-default-color);}
+
+@media screen and(max-width:1300px){
+  main{
+    width: 70vw;
+
+    .title-component{
+
+      .title-container{
+
+        .saveDataBtn{
+          display: none;
+          background-color: blue;
+        }
+        .iconSaveDataMode{
+          padding: 0 10px;
+          height: 38px;
+          background-color: var(--primary-color);
+          border: none;
+          outline: none;
+          font-size: 15px;
+          font-weight: 100;
+          color: white;
+          display: flex;
+          align-items: center;
+
+          &:active{
+            transform: scale(0.91);
+          }
+
+        }
+      }
+
+    }
+  }
+}
+@media screen and(max-width:800px){
+  main{
+
+    .title-component{
+
+      .iconSaveDataMode{
+        margin-left: 30px;
+        padding: 0 10px;
+        height: 38px;
+        background-color: var(--primary-color);
+        border: none;
+        outline: none;
+        font-size: 15px;
+        font-weight: 100;
+        color: white;
+        display: flex;
+        align-items: center;
+
+        &:active{
+          transform: scale(0.91);
+        }
+
+      }
+      .saveDataBtn{
+        display: none;
+      }
+    }
+
+
+  }
+}

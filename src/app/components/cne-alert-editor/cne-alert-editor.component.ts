@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from "../../services/api.service";
 
 @Component({
@@ -7,6 +7,8 @@ import { ApiService } from "../../services/api.service";
   styleUrls: ['./cne-alert-editor.component.scss']
 })
 export class CneAlertEditorComponent implements OnInit {
+
+  @ViewChild('alertText') alertText!:ElementRef
 
   constructor(public apiSvc:ApiService) {
 
@@ -17,7 +19,7 @@ export class CneAlertEditorComponent implements OnInit {
     'alertColor':'warn',
     'alertTextAling':'left',
     'alertPrefix':'Noticia',
-    'alertText':'Noticia | AlertComponent',
+    'alertText':'AlertComponent',
     'alertTextAutomaticColor':'#000',
   }
 
@@ -27,19 +29,18 @@ export class CneAlertEditorComponent implements OnInit {
 
   ngAfterViewInit() {
     this.changeAlertColor(this.alertData.alertColor)
+    this.alertData = this.apiSvc.globalDataWeb.webConfigPage.alertData
   }
 
   //Output Toggle
   setStatusBtn(e:boolean){
     this.alertData.alertStatus = e
-
   }
 
   changeAlertColor(color:string){
     if (color == 'warn') {this.alertData.alertTextAutomaticColor = '#000';}
     else{this.alertData.alertTextAutomaticColor = '#FFF';}
     this.alertData.alertColor = color
-
   }
 
   changeAlingText(aling:string){
@@ -55,6 +56,8 @@ export class CneAlertEditorComponent implements OnInit {
   }
 
   saveChanges(){
+    //Guarda el texto del alert en "AlertData"
+    this.alertData.alertText = this.alertText.nativeElement?.innerHTML
     this.apiSvc.saveChanges('alertData', this.alertData)
   }
 

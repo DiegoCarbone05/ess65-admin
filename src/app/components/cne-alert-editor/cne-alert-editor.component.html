@@ -4,7 +4,11 @@
       <p class="title">Configuracion del Banner</p>
       <cne-win-slide  [externalStatus]="alertData.alertStatus" (statusChange)="setStatusBtn($event)"></cne-win-slide>
     </div>
-    <button (click)="saveChanges()" class="cne-metro-button">Guardar cambios</button>
+    <!-- Button in panoramic mode -->
+    <button (click)="saveChanges()" class="cne-metro-button saveDataBtn"> <p>Guardar cambios</p></button>
+
+    <!-- button in small screen mode -->
+    <button (click)="saveChanges()" class="iconSaveDataMode"><i class="mdl2-save"></i></button>
 
   </div>
   <div class="alert-preview">
@@ -14,7 +18,7 @@
           {{alertData.alertPrefix}}
         </strong>
         <p [style]="'color:' +alertData.alertTextAutomaticColor+ ';'">&nbsp; | &nbsp;</p>
-        <p [style]="'color:' +alertData.alertTextAutomaticColor+ ';'">AlertComponent</p>
+        <p #alertText [style]="'color:' +alertData.alertTextAutomaticColor+ ';'" contenteditable>{{alertData.alertText}}</p>
       </span>
     </div>
   </div>

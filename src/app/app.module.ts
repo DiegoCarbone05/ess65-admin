@@ -6,11 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CneButtonDirective } from './directives/cne-button.directive';
 import { DirectivesModule } from './directives/directives.module';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,11 @@ import { DirectivesModule } from './directives/directives.module';
     ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
-    NoopAnimationsModule,
     MatDialogModule,
     DirectivesModule,
-    BrowserAnimationsModule
+    MatSelectModule,
+    MatIconModule,
+    BrowserAnimationsModule,
   ],
   exports:[],
   providers: [],

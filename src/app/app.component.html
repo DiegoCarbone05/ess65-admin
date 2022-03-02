@@ -1,23 +1,10 @@
-<body class="appBody">
+<main class="appBody" *ngIf="true">
 
-  <div class="title-bar">
-    <p class="title">ES65 Admin</p>
-    <div class="window-controls-containter">
-      <button class="windows-icon-bg" (click)="titleBarWindow('minimize')">
-        <i class="mdl2-chrome-minimize win-icon"></i>
-      </button>
-      <button class="windows-icon-bg" (click)="titleBarWindow('size')">
-        <i class="mdl2-chrome-maximize win-icon"></i>
-      </button>
-      <button class="windows-icon-bg close" (click)="titleBarWindow('close')">
-        <i class="mdl2-chrome-close win-icon"></i>
-      </button>
-    </div>
-  </div>
+  <cne-title-bar></cne-title-bar>
 
-  <div id="aside" class="aside-Extended" [style]="aside"></div>
+  <div id="aside" class="aside-Extended" [style]="aside"  *ngIf="false"></div>
 
-  <div class="main">
+  <div class="main"  >
     <aside [class.aside-Active]="asideStatus">
       <button (click)="openAside()" class="menu"></button>
       <div class="wrap-Aside" [class.aside-Active]="asideStatus">
@@ -26,7 +13,7 @@
 
           <div class="btn-content">
             <div class="icon"><div class="{{asideBtn.icon}}"></div></div>
-            <p>{{asideBtn.text}}</p>
+            <p *ngIf="asideStatus">{{asideBtn.text}}</p>
           </div>
 
         </button>
@@ -43,4 +30,7 @@
 
   </div>
 
-</body>
+
+</main>
+
+<app-login *ngIf="false"></app-login>

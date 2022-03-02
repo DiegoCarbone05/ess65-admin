@@ -16,7 +16,7 @@ export class ApiService {
   saveChanges(name:string, data:any){
     if(this.globalDataWeb){
       (<any>this.globalDataWeb.webConfigPage)[name] = data;
-      console.log("dfatosGFuardadios",this.globalDataWeb.webConfigPage);
+      console.log("DatosGuardados",this.globalDataWeb.webConfigPage);
     }
   }
 

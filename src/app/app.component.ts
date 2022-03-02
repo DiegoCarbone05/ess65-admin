@@ -29,20 +29,6 @@ export class AppComponent {
     this.electronSvc.onReadyAngular()
   }
 
-
-  titleBarWindow(btnName:string){
-    // closeWindow()
-    if (btnName == 'close') {
-      this.electronSvc.closeWindow()
-    }
-    if (btnName == 'size') {
-      this.electronSvc.maximizeWindow()
-    }
-    if (btnName == 'minimize') {
-      this.electronSvc.minimizeWindow()
-    }
-  }
-
   openAside(){
     let aside = document.getElementById('aside')
     this.asideStatus = !this.asideStatus

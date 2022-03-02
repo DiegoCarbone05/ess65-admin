@@ -9,6 +9,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
 import { CneInputComponent } from './cne-input/cne-input.component';
 import { DirectivesModule } from '../directives/directives.module';
+import { CneTitleBarComponent } from './cne-title-bar/cne-title-bar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { DirectivesModule } from '../directives/directives.module';
     CneAlertEditorComponent,
     CneWinSlideComponent,
     CneInputComponent,
+    CneTitleBarComponent,
 
   ],
   imports: [
@@ -32,6 +34,7 @@ import { DirectivesModule } from '../directives/directives.module';
     CneAlertEditorComponent,
     CneWinSlideComponent,
     CneInputComponent,
+    CneTitleBarComponent,
 
   ]
 })

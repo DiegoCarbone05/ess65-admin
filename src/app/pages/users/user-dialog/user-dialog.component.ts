@@ -1,10 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-dialog',
@@ -15,37 +11,53 @@ interface Food {
 
 export class UserDialogComponent implements OnInit {
 
-  currentStep = 0
-  progressBarValue = 0
+  isLinear = true;
+  firstFormGroup!: FormGroup;
+  secondFormGroup!: FormGroup;
 
   newUser = {
     'name':'',
     'password':'',
     'dni':'',
-    '':'',
+    'course':'',
+    'turn':'',
+    'webRol':''
   }
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
+  getErrorMessage(controlName: string, text:string) {
+    if (this.firstFormGroup.controls[controlName].hasError('required')) {
+      return 'Campo de '+text+' Obligatorio';
+    }
+    return "";
+  }
 
   constructor(
     public dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private _formBuilder: FormBuilder
   ) { }
-
-  submitButton(){
-    this.currentStep = 1
-    this.progressBarValue = 25
-  }
 
   ngOnInit(): void {
 
+    // Seccion de Forms
+    this.firstFormGroup = new FormGroup({
+      // Formularios
+      userName: new FormControl('', [Validators.required]),
+      userPassword: new FormControl('', [Validators.required]),
+      userDni: new FormControl('', [Validators.required]),
+    });
+    this.secondFormGroup = new FormGroup({
+      // Formularios
+      course: new FormControl('', [Validators.required]),
+      turn: new FormControl('', [Validators.required]),
+      webRol: new FormControl('', [Validators.required]),
+    });
   }
 
+  // Cerrar Dialog
   onNoClick(): void {
+    console.log(this.newUser);
+    this.dialogRef.close();
   }
 
 

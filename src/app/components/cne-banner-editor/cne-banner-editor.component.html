@@ -11,15 +11,17 @@
   <div class="wrap-peview">
     <div class="img" style="background: url({{bannerData.bannerImg}});">
       <div class="bannerContent">
-
-        <p class="titleBanner" contenteditable [style]="'color: '+bannerData.colorText+'; font-size:'+bannerData.titleSize+'px;'">{{bannerData.text}}</p>
-
+        <p
+          #titleBannerId
+          class="titleBanner"
+          contenteditable
+          [style]="'color: '+bannerData.colorText+'; font-size:'+bannerData.titleSize+'px;'"
+        >{{bannerData.text}}</p>
         <button  [style]="'background-color:'+bannerData.btnColor+';'" *ngIf="bannerData.btnStatus">
           <a href="{{bannerData.urlBtn}}">
             <p [style]="'color:'+bannerData.colorTextBtn+';'" class="btnText">Mas Informacion</p>
           </a>
         </button>
-
       </div>
     </div>
   </div>

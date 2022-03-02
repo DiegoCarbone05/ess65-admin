@@ -1,0 +1,24 @@
+<cne-title-bar></cne-title-bar>
+<div class="form-container">
+  <form (ngSubmit)="submitForm()" [formGroup]="loginControl">
+    <div class="form-logo"></div>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput formControlName="userName" [(ngModel)]="currentUser.name">
+      <mat-error *ngIf="loginControl.invalid">{{getErrorMessage('userName')}}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="namePassword" [(ngModel)]="currentUser.password">
+      <mat-error *ngIf="loginControl.invalid">{{getErrorMessage('userName')}}</mat-error>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button [disabled]="loginControl.invalid" class="btn-submit" mat-button>Iniciar sesion</button>
+
+  </form>
+</div>

@@ -11,9 +11,6 @@ export class CneNavComponent implements OnInit {
 
   @Input() outline:any
 
-  ngOnInit(): void {
-    console.log(this.outline);
-
-  }
+  ngOnInit(): void {}
 
 }

@@ -1,3 +1,7 @@
+*{
+  caret-color: var(--primary-color);
+}
+
 .wrap-add-user{
   min-width: 400px;
   display: flex;
@@ -9,7 +13,13 @@
     font-size: 25px;
     height: fit-content;
     margin: 0;
-    margin-top: 20px;
+    margin: 20px 0;
+  }
+  .title-form-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
   }
 
   .divider-title{
@@ -28,13 +38,17 @@
     align-self: flex-end;
   }
 
-
 }
 
-::ng-deep .mat-progress-bar-fill::after {
-  background-color: var(--primary-color);
-}
-
-::ng-deep .mat-progress-bar {
-  border-radius: 2px;
+::ng-deep{
+  .mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: var(--primary-color) ;
+  }
+  .mat-dialog-container{
+    background-color: var(--aside-color);
+  }
+  .mat-stepper-horizontal, .mat-stepper-vertical{
+    background: none;
+  }
 }

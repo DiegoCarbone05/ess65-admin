@@ -16,27 +16,28 @@ export class CneBannerEditorComponent implements OnInit {
 
   btnBannerStatus:any
 
-  //llamando inputs para cambiar su valor btnTextColor
+  //llamando inputs para cambiar su valor
   @ViewChild('titleSizeInput') titleSizeInput!:ElementRef
   @ViewChild('titleColor') titleColor!:ElementRef
 
   @ViewChild('btnColor') btnColor!:ElementRef
   @ViewChild('btnTextColor') btnTextColor!:ElementRef
   @ViewChild('urlBtnInput') urlBtnInputId!:ElementRef
+  @ViewChild('titleBannerId') titleBanner!:ElementRef
 
-  colorBtn:FormControl = new FormControl("color");
-  colorTextBtn:FormControl = new FormControl("color");
+  colorBtn:FormControl = new FormControl();
+  colorTextBtn:FormControl = new FormControl();
   urlBtnInput:FormControl = new FormControl();
 
-  colorInput:FormControl = new FormControl("color");
-  titleSize:FormControl = new FormControl("number");
+  colorInput:FormControl = new FormControl();
+  titleSize:FormControl = new FormControl();
 
 
 
 
   // Datos del banner
   bannerData = {
-    "text":"Los viajes creativos comienzan aquí",
+    "text":"Los viajes creativo",
     "contentAlign":"",
     "colorText":"#FFFFFF",
     "titleSize":"35",
@@ -50,24 +51,20 @@ export class CneBannerEditorComponent implements OnInit {
   constructor(public electronSvc:ElectronService, public apiSvc:ApiService) { }
 
   ngOnInit(): void {
-    this.takeInputValue();
 
   }
 
   ngAfterViewInit(){
+    this.takeInputValue();
 
     //Plasmando los datos del Json a los inputs
     this.titleSizeInput.nativeElement.value = this.bannerData.titleSize
     this.titleColor.nativeElement.value = this.bannerData.colorText
     this.btnColor.nativeElement.value = this.bannerData.btnColor
     this.btnTextColor.nativeElement.value = this.bannerData.colorTextBtn;
-
-
   }
 
-
-
-
+  //Plasmando los datos del json en el editor
   takeInputValue(){
     // Capturador de valor del input color text
     this.colorInput.valueChanges.subscribe((newValue)=>{
@@ -88,10 +85,13 @@ export class CneBannerEditorComponent implements OnInit {
     this.titleSize.valueChanges.subscribe((newValue)=>{
       this.bannerData.titleSize = newValue
     })
-
+    // Caputarndo el valor de la url del boton banner
     this.urlBtnInput.valueChanges.subscribe((newValue)=>{
       this.bannerData.urlBtn = newValue
     })
+    //capturando el texto del titulo titleBanner
+    this.bannerData.text = this.titleBanner.nativeElement?.innerHTML
+
   }
 
   setStatusBtn(e:boolean){
@@ -108,6 +108,7 @@ export class CneBannerEditorComponent implements OnInit {
 
   // Funcion encargada de guardar los datos ya editados en el json del banner
   saveChanges(){
+    this.takeInputValue()
     this.apiSvc.saveChanges('bannerData', this.bannerData)
   }
 

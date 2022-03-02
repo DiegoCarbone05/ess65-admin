@@ -1,0 +1,59 @@
+.title-bar{
+  grid-row: 0/1;
+  grid-column: 1/3;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  -webkit-app-region: drag !important;
+  width: 100%;
+  height: 32px;
+  position: fixed;
+  z-index: 1001;
+
+  .title{
+    position: fixed;
+    align-self: center;
+    font-size: 12px;
+    text-overflow:ellipsis;
+    color: var(--titlebar-text-color) !important;
+  }
+
+  .window-controls-containter{
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    z-index: 99;
+    -webkit-app-region: no-drag;
+    height: 32px;
+    margin-left: 5px;
+
+    .windows-icon-bg{
+      display: inline-block;
+      height: 100%;
+      width: 46px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: white;
+
+
+      .win-icon{
+        font-size: 10px;
+       color: var(--titlebar-text-color) !important;
+      }
+
+      &:hover{
+        background-color: #00000018;
+      }
+    }
+    .close:hover{
+      background-color: #D41324;
+      color: white;
+    }
+  }
+}
+

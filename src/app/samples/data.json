@@ -18,7 +18,7 @@
       "alertColor":"warn",
       "alertTextAling":"left",
       "alertPrefix":"Noticia",
-      "alertText":"Noticia | AlertComponent",
+      "alertText":"AlertComponent",
       "alertTextAutomaticColor":"#000"
     }
   }

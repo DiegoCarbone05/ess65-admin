@@ -12,30 +12,14 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
 export class UsersComponent implements OnInit {
 
-  animal!: string;
-  name!: string;
-
   usersData:any
 
-  constructor(
-    public apiSvc:ApiService,
-    public dialog: MatDialog,
-
-    ) {
+  constructor( public apiSvc:ApiService,public dialog: MatDialog,){
     this.usersData = this.apiSvc.usersJson.users
-    console.log(this.usersData);
-    this.openDialog()
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(UserDialogComponent,{
-      panelClass: 'modal-container',
-      data: {
-        title: 'Error recuperando contraseña',
-        body: `Hubo un error al recuperar tu contraseña, por favor intentá nuevamente.`,
-        options: ['Aceptar'],
-      },
-    })
+    this.dialog.open(UserDialogComponent)
   }
 
 
