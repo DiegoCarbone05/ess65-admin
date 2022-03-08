@@ -9,12 +9,7 @@
   flex-direction: column;
   position: relative;
 
-  .title{
-    font-size: 25px;
-    height: fit-content;
-    margin: 0;
-    margin: 20px 0;
-  }
+
   .title-form-container{
     display: flex;
     flex-direction: row;
@@ -38,6 +33,20 @@
     align-self: flex-end;
   }
 
+}
+
+.wrap-edit-user{
+  width: 448px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .title{
+    font-size: 25px;
+    height: fit-content;
+    margin: 0;
+    margin: 20px 0;
+  }
 }
 
 ::ng-deep{

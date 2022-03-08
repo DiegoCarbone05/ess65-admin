@@ -12,6 +12,8 @@ import { DirectivesModule } from './directives/directives.module';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSelectModule,
     MatIconModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    MatSidenavModule
   ],
   exports:[],
   providers: [],

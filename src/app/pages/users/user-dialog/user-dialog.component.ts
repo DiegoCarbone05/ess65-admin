@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-user-dialog',
@@ -12,52 +15,100 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class UserDialogComponent implements OnInit {
 
   isLinear = true;
-  firstFormGroup!: FormGroup;
-  secondFormGroup!: FormGroup;
+  formGroup!: FormGroup;
+  editMode = false;
 
-  newUser = {
+  user:User = {
+    '_id':undefined,
     'name':'',
     'password':'',
-    'dni':'',
-    'course':'',
+    'dni':0,
+    'course':0,
     'turn':'',
-    'webRol':''
-  }
-
-  getErrorMessage(controlName: string, text:string) {
-    if (this.firstFormGroup.controls[controlName].hasError('required')) {
-      return 'Campo de '+text+' Obligatorio';
-    }
-    return "";
+    'webRol':'',
+    'schoolRol':''
   }
 
   constructor(
     public dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _formBuilder: FormBuilder
-  ) { }
+    public userSvc:UserService,
+    public apiSvc:ApiService
+  ) {
+
+    this.formGroup= new FormGroup({
+      name: new FormControl('',[Validators.required]),
+      password: new FormControl('',[Validators.required]),
+      dni:new FormControl("32423",[Validators.required, Validators.min(10000000),  Validators.max(99999999)]),
+      course: new FormControl('',),
+      turn: new FormControl('',),
+      webRol: new FormControl('',),
+      schoolRol: new FormControl('',),
+
+    });
+   }
 
   ngOnInit(): void {
 
-    // Seccion de Forms
-    this.firstFormGroup = new FormGroup({
-      // Formularios
-      userName: new FormControl('', [Validators.required]),
-      userPassword: new FormControl('', [Validators.required]),
-      userDni: new FormControl('', [Validators.required]),
-    });
-    this.secondFormGroup = new FormGroup({
-      // Formularios
-      course: new FormControl('', [Validators.required]),
-      turn: new FormControl('', [Validators.required]),
-      webRol: new FormControl('', [Validators.required]),
-    });
+    if(this.data.editMode){
+
+      this.user = this.data.user;
+      this.editMode = this.data.editMode
+
+      //this.content = this.data.method;
+      this.formGroup.controls['name'].setValue(this.user.name);
+      this.formGroup.controls['password'].setValue(this.user.password);
+      this.formGroup.controls['dni'].setValue(this.user.dni);
+      this.formGroup.controls['course'].setValue(this.user.course);
+      this.formGroup.controls['turn'].setValue(this.user.turn);
+      this.formGroup.controls['webRol'].setValue(this.user.webRol);
+      this.formGroup.controls['schoolRol'].setValue(this.user.schoolRol);
+    }
+  }
+
+  isFirstFormValid(){
+    return this.formGroup.controls['name'].valid &&this.formGroup.controls['password'].valid && this.formGroup.controls['dni'].valid;
+  }
+
+  getErrorMessage(controlName: string, text:string) {
+    if (this.formGroup.controls[controlName].hasError('required')) {
+      return 'Campo de '+text+' Obligatorio';
+    }
+    else if(this.formGroup.controls[controlName].hasError('min') || this.formGroup.controls[controlName].hasError('max')){
+      return 'Debe tener 8 caracteres';
+    }
+    return "Error";
   }
 
   // Cerrar Dialog
-  onNoClick(): void {
-    console.log(this.newUser);
-    this.dialogRef.close();
+  onNoClick(){
+  }
+
+  sendNewUser(){
+    this.user.name = this.formGroup.controls['name'].value;
+    this.user.password = this.formGroup.controls['password'].value;
+    this.user.dni = this.formGroup.controls['dni'].value;
+    this.user.course = this.formGroup.controls['course'].value;
+    this.user.turn = this.formGroup.controls['turn'].value;
+    this.user.webRol = this.formGroup.controls['webRol'].value;
+    this.user.schoolRol = this.formGroup.controls['schoolRol'].value;
+
+
+    if (this.editMode) {
+      this.userSvc.setUser(this.user).subscribe(res =>{
+        this.userSvc.getUsers()
+        this.dialogRef.close();
+      })
+    }
+    else{
+      // console.log(this.user);
+      // return;
+
+      this.userSvc.addUser(this.user).subscribe(res =>{
+        this.userSvc.getUsers()
+        this.dialogRef.close();
+      })
+    }
   }
 
 

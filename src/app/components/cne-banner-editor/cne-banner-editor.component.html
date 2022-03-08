@@ -9,17 +9,16 @@
 
   <!-- Banner Preview -->
   <div class="wrap-peview">
-    <div class="img" style="background: url({{bannerData.bannerImg}});">
+    <div class="img" style="background: url({{bannerData.configs.bannerImg}});">
       <div class="bannerContent">
-        <p
-          #titleBannerId
+        <span
           class="titleBanner"
-          contenteditable
-          [style]="'color: '+bannerData.colorText+'; font-size:'+bannerData.titleSize+'px;'"
-        >{{bannerData.text}}</p>
-        <button  [style]="'background-color:'+bannerData.btnColor+';'" *ngIf="bannerData.btnStatus">
-          <a href="{{bannerData.urlBtn}}">
-            <p [style]="'color:'+bannerData.colorTextBtn+';'" class="btnText">Mas Informacion</p>
+          [style]="'color: '+bannerData.configs.colorText+';font-size:'+bannerData.configs.titleSize+'px;'"
+        >{{bannerData.configs.title}}</span>
+        <span [style]="'color: '+bannerData.configs.colorText+';'">{{bannerData.configs.description}}</span>
+        <button matRipple [matRippleColor]="'#80808080'" [style]="'background-color:'+bannerData.configs.btnColor+';'" *ngIf="bannerData.configs.btnStatus">
+          <a href="{{bannerData.configs.urlBtn}}">
+            <p [style]="'color:'+bannerData.configs.colorTextBtn+';'" class="btnText">Mas Informacion</p>
           </a>
         </button>
       </div>
@@ -29,20 +28,32 @@
   <!-- Editor de Texto -->
   <div class="banner-controls-editor">
 
-    <!-- Input color del texto del banner -->
-      <button class="btn-control-banner-adaptable">Color de titulo
-        <input #titleColor type="color" [formControl]="colorInput" id="colorText">
-      </button>
+      <mat-form-field>
+        <input matInput [ngModel]="bannerData.configs.colorText" [formControl]="colorControl"  [ngxMatColorPicker]="picker" [disabled]="disabled">
+        <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+        <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
+      </mat-form-field>
 
-    <!-- input del tamaño del texto del banner -->
-      <button class="btn-adaptable" > Tamaño de texto
-        <input #titleSizeInput [formControl]="titleSize" id="titleSize" class="banner-text-size-input" type="number">
-      </button>
+      <mat-form-field class="title-banner-input" appearance="legacy">
+        <mat-label>Titulo</mat-label>
+        <input [(ngModel)]="bannerData.configs.title" matInput>
+      </mat-form-field>
+
+      <mat-form-field class="title-banner-input" appearance="legacy">
+        <mat-label>Descripcion</mat-label>
+        <input [(ngModel)]="bannerData.configs.description" matInput>
+      </mat-form-field>
+
   </div>
 
   <!-- Editor de Imagen -->
   <div class="banner-controls-editor">
-    <button class="btn-control-banner-adaptable"><input type="file"></button>
+
+    <mat-form-field class="title-banner-input" appearance="legacy">
+      <mat-label>Descripcion</mat-label>
+      <input matInput>
+    </mat-form-field>
+
   </div>
 
   <!-- Editor del boton -->
@@ -51,24 +62,25 @@
     <!-- Toggle del boton del banner -->
     <button class="btn-control-banner-adaptable">Habilitar boton
 
-      <cne-win-slide [externalStatus]="bannerData.btnStatus" (statusChange)="setStatusBtn($event)"></cne-win-slide>
+      <cne-win-slide [externalStatus]="bannerData.configs.btnStatus" (statusChange)="setStatusBtn($event)"></cne-win-slide>
 
     </button>
 
     <!-- input color del boton -->
     <button class="btn-control-banner-adaptable">Color de boton
-      <input #btnColor type="color" [formControl]="colorBtn" id="colorBtn">
+      <input type="color" [(ngModel)]="bannerData.configs.btnColor" id="colorBtn">
     </button>
 
     <!-- Input color del texto del boton -->
     <button class="btn-control-banner-adaptable">Color de texto
-      <input #btnTextColor type="color" [formControl]="colorTextBtn" id="colorTextBtn">
+      <input type="color" [(ngModel)]="bannerData.configs.colorTextBtn" id="colorTextBtn">
     </button>
 
     <!-- Input url del boton -->
-    <button class="btn-adaptable">Ruta del boton
-      <input class="url-Btn-input" placeholder="Ingrese url del boton" #urlBtnInputId type="url" [formControl]="urlBtnInput" id="urlBtnInput">
-    </button>
+    <mat-form-field class="title-banner-input" appearance="legacy">
+      <mat-label>Ruta del boton</mat-label>
+      <input type="url" placeholder="http://" matInput>
+    </mat-form-field>
 
   </div>
 </main>

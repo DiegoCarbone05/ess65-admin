@@ -1,64 +1,104 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ApiService } from "../../services/api.service";
+import { StaticContentService } from 'src/app/services/static-content.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'cne-alert-editor',
   templateUrl: './cne-alert-editor.component.html',
-  styleUrls: ['./cne-alert-editor.component.scss']
+  styleUrls: ['./cne-alert-editor.component.scss'],
 })
 export class CneAlertEditorComponent implements OnInit {
 
-  @ViewChild('alertText') alertText!:ElementRef
-
-  constructor(public apiSvc:ApiService) {
-
-  }
-
+  @ViewChild('alertText') alertText!: ElementRef;
   alertData = {
-    'alertStatus':true,
-    'alertColor':'warn',
-    'alertTextAling':'left',
-    'alertPrefix':'Noticia',
-    'alertText':'AlertComponent',
-    'alertTextAutomaticColor':'#000',
-  }
+    name: 'alertConfig',
+    configs: {
+      alertStatus: true,
+      alertColor: 'warn',
+      alertTextAling: 'left',
+      alertPrefix: 'Prefix',
+      alertText: 'AlertComponent',
+      alertTextAutomaticColor: '#000',
+    },
+  };
+
+  constructor(
+    public apiSvc: ApiService,
+    public staticContentSvc: StaticContentService
+  ) {}
+
+
 
   ngOnInit(): void {
-    this.changeAlertColor
+    //this.changeAlertColor
   }
 
   ngAfterViewInit() {
-    this.changeAlertColor(this.alertData.alertColor)
-    this.alertData = this.apiSvc.globalDataWeb.webConfigPage.alertData
+    this.changeAlertColor(this.alertData.configs.alertColor);
+    this.getConfig();
+  }
+
+  // Guarda la funcion que pide la data en otra funcion para luego pedirla en el "ngAfterVewInit"
+  getConfig() {
+    this.staticContentSvc.getStaticConfig().subscribe((configList) => {
+      const alertConfig = configList.find(
+        (configItem) => configItem.name === 'alertConfig'
+      );
+      if (alertConfig) {
+        this.alertData = alertConfig;
+      }
+    });
   }
 
   //Output Toggle
-  setStatusBtn(e:boolean){
-    this.alertData.alertStatus = e
+  setStatusBtn(e: boolean) {
+    this.alertData.configs.alertStatus = e;
   }
 
-  changeAlertColor(color:string){
-    if (color == 'warn') {this.alertData.alertTextAutomaticColor = '#000';}
-    else{this.alertData.alertTextAutomaticColor = '#FFF';}
-    this.alertData.alertColor = color
+  // Funcion encargada de cambiar el color del alert
+  changeAlertColor(color: string) {
+    if (color == 'warn') {
+      this.alertData.configs.alertTextAutomaticColor = '#000';
+    } else {
+      this.alertData.configs.alertTextAutomaticColor = '#FFF';
+    }
+    this.alertData.configs.alertColor = color;
   }
 
-  changeAlingText(aling:string){
-    this.alertData.alertTextAling = aling
+  // Funcion encargada de cambiar la jsutificacion de texto
+  changeAlingText(aling: string) {
+    this.alertData.configs.alertTextAling = aling;
   }
 
-  changeAlertPrefix(option:string){
-    this.alertData.alertPrefix = option
-    if (option == 'Noticia') {this.alertData.alertColor = 'defaultColor'; this.alertData.alertTextAutomaticColor = '#FFF';}
-    if (option == 'Aviso') {this.alertData.alertColor = 'warn'; this.alertData.alertTextAutomaticColor = '#000';}
-    if (option == 'Anuncio') {this.alertData.alertColor = 'info'; this.alertData.alertTextAutomaticColor = '#FFF';}
-    if (option == 'Informacion') {this.alertData.alertColor = 'info'; this.alertData.alertTextAutomaticColor = '#FFF';}
+  // Funcion encargada de cambiar los prefijos
+  changeAlertPrefix(option: string) {
+    this.alertData.configs.alertPrefix = option;
+    if (option == 'Noticia') {
+      this.alertData.configs.alertColor = 'defaultColor';
+      this.alertData.configs.alertTextAutomaticColor = '#FFF';
+    }
+    if (option == 'Aviso') {
+      this.alertData.configs.alertColor = 'warn';
+      this.alertData.configs.alertTextAutomaticColor = '#000';
+    }
+    if (option == 'Anuncio') {
+      this.alertData.configs.alertColor = 'info';
+      this.alertData.configs.alertTextAutomaticColor = '#FFF';
+    }
+    if (option == 'Informacion') {
+      this.alertData.configs.alertColor = 'info';
+      this.alertData.configs.alertTextAutomaticColor = '#FFF';
+    }
   }
 
-  saveChanges(){
+  // Funcion encargada de cargar los cambios
+  saveChanges() {
     //Guarda el texto del alert en "AlertData"
-    this.alertData.alertText = this.alertText.nativeElement?.innerHTML
-    this.apiSvc.saveChanges('alertData', this.alertData)
-  }
+    this.alertData.configs.alertText = this.alertText.nativeElement?.innerHTML;
+    console.log(this.alertData);
 
+    this.staticContentSvc
+      .setStaticConfig(this.alertData)
+      .subscribe((res) => {});
+  }
 }

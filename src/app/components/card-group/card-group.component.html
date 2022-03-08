@@ -1,0 +1,96 @@
+<div class="title-component">
+  <div class="title-container">
+    <p class="title">Configuracion de las tarjetas</p>
+  </div>
+  <button class="cne-metro-button saveDataBtn"> <p>Guardar cambios</p></button>
+</div>
+
+<div class="wrap-card">
+
+  <div class="card">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Direccion URL de la tarjeta</mat-label>
+      <input matInput placeholder="http://" [value]="cardData[0].url">
+    </mat-form-field>
+
+
+    <img width="100%" [src]="cardData[0].img" alt="">
+    <!-- <h2>{{cardData[0].title}}</h2>
+    <p>{{cardData[0].description}}</p> -->
+    <br>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Titulo de la tarjeta</mat-label>
+      <input matInput value="{{cardData[0].title}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Descripcion</mat-label>
+      <textarea maxlength="150" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' matInput value="{{cardData[0].description}}"></textarea>
+    </mat-form-field>
+
+  </div>
+
+  <div class="card">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Direccion URL de la tarjeta</mat-label>
+      <input matInput placeholder="http://" [value]="cardData[1].url">
+    </mat-form-field>
+
+    <img width="100%" [src]="cardData[1].img" alt="">
+    <br>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Titulo de la tarjeta</mat-label>
+      <input matInput value="{{cardData[1].title}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Descripcion</mat-label>
+      <textarea maxlength="150" matInput value="{{cardData[1].description}}"></textarea>
+    </mat-form-field>
+
+  </div>
+
+  <div class="card">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Direccion URL de la tarjeta</mat-label>
+      <input matInput placeholder="http://" [value]="cardData[2].url">
+    </mat-form-field>
+
+    <img width="100%" [src]="cardData[2].img" alt="">
+    <br>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Titulo de la tarjeta</mat-label>
+      <input matInput value="{{cardData[2].title}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Descripcion</mat-label>
+      <textarea maxlength="150" matInput value="{{cardData[2].description}}"></textarea>
+    </mat-form-field>
+
+  </div>
+
+  <div class="card">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Direccion URL de la tarjeta</mat-label>
+      <input matInput placeholder="http://" [value]="cardData[3].url">
+    </mat-form-field>
+
+    <img width="100%" [src]="cardData[3].img" alt="">
+    <br>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Titulo de la tarjeta</mat-label>
+      <input matInput value="{{cardData[3].title}}">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Descripcion</mat-label>
+      <textarea maxlength="150" matInput value="{{cardData[3].description}}"></textarea>
+    </mat-form-field>
+
+  </div>
+</div>

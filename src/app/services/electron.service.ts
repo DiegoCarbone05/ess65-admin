@@ -25,7 +25,6 @@ export class ElectronService {
   minimizeWindow(){
     electron.ipcRenderer.send("minimizeWindow")
   }
-
   onReadyAngular(){
     electron.ipcRenderer.send("isOnReadyAngular")
   }

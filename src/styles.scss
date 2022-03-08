@@ -38,7 +38,6 @@ $ess65web-theme: mat.define-dark-theme((
 
 *{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--text-color) ;
   outline: none;
   // transition: all 0.6s cubic-bezier(0, 1.02, 0, 1.01) !important;
   font-style: normal;
@@ -58,9 +57,20 @@ body{
   margin: 0;
   padding: 0;
   background-position: center;
-  overflow: hidden;
-  background-color: var(--primary-gs);
+  background-color: var(--rOutlet-color);
 }
+
+// ::-webkit-scrollbar{
+//   background: red;
+
+//   &:hover{
+//     background: orangered;
+
+//   }
+// }
+// ::-webkit-scrollbar:hover{
+//   opacity: 1;
+// }
 
 
 :root{
@@ -136,10 +146,6 @@ input{
   font-size: 15px;
   font-weight: 100;
   color: white;
-
-  // &:active{
-  //   transform: scale(0.91);
-  // }
 
 }
 

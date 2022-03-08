@@ -22,9 +22,47 @@ main{
   td{
     border-bottom: 1px solid var(--tertiary-gs);
     border-top: 1px solid var(--tertiary-gs);
+
+
   }
 
+  .btn-td{
+    padding: 0;
+    width: 160px;
 
+    .table-btn{
+      height: 48px;
+      width: 48px;
+      font-size: 20px;
+      margin: 0 15px;
+    }
+
+
+  }
+
+}
+.right-btn-container{
+  height: 48px;
+  display: flex;
+
+  .nav-bar-btn{
+    background: none;
+    border: none;
+    outline: none;
+    width: 48px;
+    height: 48px;
+    font-size: 19px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+
+    i{
+      align-self: center;
+    }
+    &:hover{
+      background-color: var(--tertiary-gs);
+    }
+  }
 }
 
 ::ng-deep{
@@ -37,31 +75,5 @@ main{
   }
   .mat-tab-header{
     background-color: var(--nav-color);
-  }
-  cne-nav{
-
-    .right-btn-container{
-      height: 48px;
-
-      button{
-        background: none;
-        border: none;
-        outline: none;
-        width: 48px;
-        height: 48px;
-        font-size: 19px;
-        display: flex;
-        justify-content: center;
-        justify-items: center;
-
-        i{
-          align-self: center;
-        }
-      }
-      &:hover{
-        background-color: var(--tertiary-gs);
-      }
-    }
-
   }
 }

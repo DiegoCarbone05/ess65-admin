@@ -1,36 +1,35 @@
-<main class="appBody" *ngIf="true">
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
 
-  <cne-title-bar></cne-title-bar>
-
-  <div id="aside" class="aside-Extended" [style]="aside"  *ngIf="false"></div>
-
-  <div class="main"  >
     <aside [class.aside-Active]="asideStatus">
       <button (click)="openAside()" class="menu"></button>
       <div class="wrap-Aside" [class.aside-Active]="asideStatus">
-
         <button *ngFor="let asideBtn of sidebarBtns; let index = index" class="btn-Seccion" (click)="asideBtnConfig(index, asideBtn.src)" [class.bottom]="asideBtn.bottomStatus">
-
           <div class="btn-content">
             <div class="icon"><div class="{{asideBtn.icon}}"></div></div>
             <p *ngIf="asideStatus">{{asideBtn.text}}</p>
           </div>
-
         </button>
-
       </div>
-
       <div [class]="'pipe'" [style]="'transform: translate(0px,'+selectedSection+'px)'"></div>
-
     </aside>
 
-    <div class="rOutletContent">
-      <router-outlet></router-outlet>
-    </div>
+  </mat-drawer>
 
-  </div>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
 
+</mat-drawer-container>
 
-</main>
 
 <app-login *ngIf="false"></app-login>
+
+
+<!-- <main class="appBody" *ngIf="true">
+  <div id="aside" class="aside-Extended" [style]="aside"  *ngIf="false"></div>
+  <div class="main">
+
+
+  </div>
+</main> -->

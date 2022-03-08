@@ -7,6 +7,8 @@ nav{
   padding-left: 20px;
   box-sizing: border-box;
   justify-content: space-between;
+  color: var(--text-color) ;
+
 
   &.outlineActive{
     border-bottom: 1px solid var(--tertiary-gs);

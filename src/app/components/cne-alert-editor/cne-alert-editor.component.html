@@ -2,7 +2,7 @@
   <div class="title-component">
     <div class="title-container">
       <p class="title">Configuracion del Banner</p>
-      <cne-win-slide  [externalStatus]="alertData.alertStatus" (statusChange)="setStatusBtn($event)"></cne-win-slide>
+      <cne-win-slide [externalStatus]="alertData.configs.alertStatus" (statusChange)="setStatusBtn($event)"></cne-win-slide>
     </div>
     <!-- Button in panoramic mode -->
     <button (click)="saveChanges()" class="cne-metro-button saveDataBtn"> <p>Guardar cambios</p></button>
@@ -12,13 +12,13 @@
 
   </div>
   <div class="alert-preview">
-    <div [class]="alertData.alertColor" class="alert" [style]="'justify-content:'+alertData.alertTextAling+';'">
-      <span [style]="'color:' +alertData.alertTextAutomaticColor+ ';'" class="text">
-        <strong [style]="'color:' +alertData.alertTextAutomaticColor+ ';'">
-          {{alertData.alertPrefix}}
+    <div [class]="alertData.configs.alertColor" class="alert" [style]="'justify-content:'+alertData.configs.alertTextAling+';'">
+      <span [style]="'color:' +alertData.configs.alertTextAutomaticColor+ ';'" class="text">
+        <strong [style]="'color:' +alertData.configs.alertTextAutomaticColor+ ';'">
+          {{alertData.configs.alertPrefix}}
         </strong>
-        <p [style]="'color:' +alertData.alertTextAutomaticColor+ ';'">&nbsp; | &nbsp;</p>
-        <p #alertText [style]="'color:' +alertData.alertTextAutomaticColor+ ';'" contenteditable>{{alertData.alertText}}</p>
+        <p [style]="'color:' +alertData.configs.alertTextAutomaticColor+ ';'">&nbsp; | &nbsp;</p>
+        <p #alertText [style]="'color:' +alertData.configs.alertTextAutomaticColor+ ';'" contenteditable>{{alertData.configs.alertText}}</p>
       </span>
     </div>
   </div>

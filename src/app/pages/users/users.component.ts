@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-users',
@@ -12,20 +14,40 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
 export class UsersComponent implements OnInit {
 
-  usersData:any
+  usersData:User[] = [];
 
-  constructor( public apiSvc:ApiService,public dialog: MatDialog,){
-    this.usersData = this.apiSvc.usersJson.users
-  }
+  constructor( public apiSvc:ApiService,public dialog: MatDialog,public userSvc:UserService){ }
 
-  openDialog(): void {
-    this.dialog.open(UserDialogComponent)
+  openUserDialog(method:boolean, user:any): void {
+    this.dialog.open(UserDialogComponent,{
+      data:{
+        method,
+        user,
+        editMode:method
+      }
+    })
   }
 
 
   ngOnInit(): void {
+
+
+    // Pidiendo usuarios de la db
+    this.userSvc.users$.subscribe((listaNueva)=>{
+      this.usersData = listaNueva;
+      console.log(this.usersData);
+    })
+
+    // this.openUserDialog(true, [])
   }
 
+  deleteUser(userId:any){
+    this.userSvc.removeUser(userId).subscribe((value)=>{
+      this.userSvc.getUsers()
+    })
+    console.log(userId);
+
+  }
 
 
 }

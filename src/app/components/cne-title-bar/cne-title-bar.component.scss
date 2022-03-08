@@ -1,3 +1,7 @@
+*{
+  -webkit-app-region: drag;
+
+}
 .title-bar{
   grid-row: 0/1;
   grid-column: 1/3;
@@ -5,9 +9,10 @@
   display: flex;
   justify-content: center;
   vertical-align: middle;
-  -webkit-app-region: drag !important;
   width: 100%;
   height: 32px;
+  -webkit-app-region: drag !important;
+
   position: fixed;
   z-index: 1001;
 

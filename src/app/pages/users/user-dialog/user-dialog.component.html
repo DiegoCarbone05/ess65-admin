@@ -1,58 +1,123 @@
-<mat-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup" label="Agregar usuario">
-    <br>
-    <form class="wrap-add-user" [formGroup]="firstFormGroup">
-      <mat-form-field appearance="legacy">
-        <mat-label>Nombre de usuario</mat-label>
-        <input matInput [(ngModel)]="newUser.name" formControlName="userName" required>
-        <mat-error>{{getErrorMessage('userName', 'Nombre de usuario')}}</mat-error>
-      </mat-form-field>
+<mat-stepper *ngIf="!editMode" [linear]="isLinear" #stepper>
+  <form [formGroup]="formGroup">
+
+    <mat-step [stepControl]="formGroup" label="Agregar usuario">
       <br>
-      <mat-form-field class="example-full-width" appearance="legacy">
-        <mat-label>Contraseña</mat-label>
-        <input matInput [(ngModel)]="newUser.password" formControlName="userPassword" type="password">
-        <mat-error>{{getErrorMessage('userPassword', 'Contraseña')}}</mat-error>
-      </mat-form-field>
+      <div class="wrap-add-user">
+        <mat-form-field appearance="legacy">
+          <mat-label>Nombre de usuario</mat-label>
+          <input matInput [ngModel]="user.name" formControlName="name">
+          <mat-error>{{getErrorMessage('name', 'Nombre de usuario')}}</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width" appearance="legacy">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [ngModel]="user.password" formControlName="password" type="password">
+          <mat-error>{{getErrorMessage('password', 'Contraseña')}}</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width" appearance="legacy">
+          <mat-label>DNI</mat-label>
+          <input matInput [ngModel]="user.dni" formControlName="dni" type="number">
+          <mat-error>{{getErrorMessage('dni', 'DNI')}}</mat-error>
+        </mat-form-field>
+        <button matStepperNext mat-button [disabled]="!isFirstFormValid()" class="btn-save">Siguiente</button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="formGroup" label="Agregar datos">
       <br>
-      <mat-form-field class="example-full-width" appearance="legacy">
-        <mat-label>DNI</mat-label>
-        <input matInput [(ngModel)]="newUser.dni" formControlName="userDni" type="number">
-        <mat-error>{{getErrorMessage('userDni', 'DNI')}}</mat-error>
-      </mat-form-field>
-      <button matStepperNext mat-button [disabled]="firstFormGroup.invalid" class="btn-save">Siguiente</button>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup" label="Agregar datos">
-    <br>
-    <form class="wrap-add-user" [formGroup]="secondFormGroup">
-      <mat-form-field  appearance="legacy">
-        <mat-label>Curso</mat-label>
-        <mat-select [(ngModel)]="newUser.course" formControlName="course" required>
-          <mat-option value="1">1 Primero</mat-option>
-          <mat-option value="2">2 Segundo</mat-option>
-          <mat-option value="3">3 Tercero</mat-option>
-          <mat-option value="4">4 Cuarto</mat-option>
-          <mat-option value="5">5 Quinto</mat-option>
-          <mat-option value="6">6 Sexto</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="legacy">
-        <mat-label>Turno</mat-label>
-        <mat-select [(ngModel)]="newUser.turn" formControlName="turn">
-          <mat-option value="A">Mañana</mat-option>
-          <mat-option value="B">Tarde</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="legacy">
-        <mat-label>Rol web</mat-label>
-        <mat-select [(ngModel)]="newUser.webRol" formControlName="webRol">
-          <mat-option value="admin">Administrador</mat-option>
-          <mat-option value="user">Usuario</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-button matStepperNext color="primary" (click)="onNoClick()" [disabled]="secondFormGroup.invalid" class=" btn-save">Guardar usuario</button>
-    </form>
-  </mat-step>
+      <div  class="wrap-add-user">
+        <mat-form-field  appearance="legacy">
+          <mat-label>Curso</mat-label>
+          <mat-select [ngModel]="user.course" formControlName="course">
+            <mat-option value="1">1 Primero</mat-option>
+            <mat-option value="2">2 Segundo</mat-option>
+            <mat-option value="3">3 Tercero</mat-option>
+            <mat-option value="4">4 Cuarto</mat-option>
+            <mat-option value="5">5 Quinto</mat-option>
+            <mat-option value="6">6 Sexto</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="legacy">
+          <mat-label>Turno</mat-label>
+          <mat-select [ngModel]="user.turn" formControlName="turn">
+            <mat-option value="A">Mañana</mat-option>
+            <mat-option value="B">Tarde</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="legacy">
+          <mat-label>Rol web</mat-label>
+          <mat-select [ngModel]="user.webRol" formControlName="webRol">
+            <mat-option value="admin">Administrador</mat-option>
+            <mat-option value="user">Usuario</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="legacy">
+          <mat-label>Rol escolar</mat-label>
+          <mat-select [ngModel]="user.schoolRol" formControlName="schoolRol">
+            <mat-option value="estudiante">Alumno</mat-option>
+            <mat-option value="profesor/Directivos">Profesor o directivos</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button matStepperNext color="primary" (click)="sendNewUser()" class="btn-save">Guardar usuario</button>
+      </div>
+    </mat-step>
+  </form>
 </mat-stepper>
+
+<div *ngIf="editMode" class="wrap-edit-user">
+  <p class="title">Editar usuario "{{user.name}}"</p>
+  <br>
+  <form class="wrap-add-user" [formGroup]="formGroup">
+    <mat-form-field appearance="legacy">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput [ngModel]="user.name" formControlName="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width" appearance="legacy">
+      <mat-label>DNI</mat-label>
+      <input matInput min="10000000" max="99000000" [ngModel]="user.dni" type="number" formControlName="dni">
+      <!-- <mat-error>{{getErrorMessage('userDni', 'DNI')}}</mat-error> -->
+    </mat-form-field>
+    <br>
+    <mat-form-field  appearance="legacy">
+      <mat-label>Curso</mat-label>
+      <mat-select [ngModel]="user.course" formControlName="course">
+        <mat-option [value]="1">1 Primero</mat-option>
+        <mat-option [value]="2">2 Segundo</mat-option>
+        <mat-option [value]="3">3 Tercero</mat-option>
+        <mat-option [value]="4">4 Cuarto</mat-option>
+        <mat-option [value]="5">5 Quinto</mat-option>
+        <mat-option [value]="6">6 Sexto</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <mat-label>Turno</mat-label>
+      <mat-select [ngModel]="user.turn" formControlName="turn">
+        <mat-option value="A">Mañana</mat-option>
+        <mat-option value="B">Tarde</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <mat-label>Rol web</mat-label>
+      <mat-select [ngModel]="user.webRol" formControlName="webRol">
+        <mat-option value="admin">Administrador</mat-option>
+        <mat-option value="user">Usuario</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+      <mat-label>Rol escolar</mat-label>
+      <mat-select [ngModel]="user.schoolRol" formControlName="schoolRol">
+        <mat-option value="estudiante">Alumno</mat-option>
+        <mat-option value="profesor/Directivos">Profesor o directivos</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="sendNewUser()" mat-button class="btn-save" [disabled]="!formGroup.dirty">Siguiente</button>
+  </form>
+</div>

@@ -1,7 +1,7 @@
 <cne-nav>
   Usuarios
   <div class="right-btn-container">
-    <button (click)="openDialog()"><i class="mdl2-add-friend"></i></button>
+    <button class="nav-bar-btn" (click)="openUserDialog(false, '')"><i class="mdl2-add-friend"></i></button>
   </div>
 </cne-nav>
 <mat-tab-group>
@@ -18,12 +18,16 @@
           <th>Turno</th>
         </tr>
         <ng-container *ngFor="let user of usersData">
-          <tr *ngIf="user.schoolRol == 'alumn'">
+          <tr *ngIf="user.schoolRol == 'estudiante'">
             <td>{{user.name}}</td>
             <td>{{user.dni}}</td>
-            <td>{{user.course}}</td>
-            <td>{{user.role}}</td>
+            <td>{{user.course}} año</td>
+            <td>{{user.webRol}}</td>
             <td>{{user.turn}}</td>
+            <td class="btn-td" >
+              <button class="table-btn" (click)="openUserDialog(true, user)"><i class="mdl2-edit"></i></button>
+              <button class="table-btn" (click)="deleteUser(user._id)" ><i class="mdl2-delete"></i></button>
+            </td>
           </tr>
         </ng-container>
       </table>
@@ -40,10 +44,14 @@
           <th>Rol</th>
         </tr>
         <ng-container *ngFor="let user of usersData">
-          <tr *ngIf="user.schoolRol !== 'alumn'">
+          <tr *ngIf="user.schoolRol !== 'estudiante'">
             <td>{{user.name}}</td>
             <td>{{user.dni}}</td>
-            <td>{{user.role}}</td>
+            <td>{{user.webRol}}</td>
+            <td class="btn-td" >
+              <button class="table-btn" (click)="openUserDialog(true, user)"><i class="mdl2-edit"></i></button>
+              <button class="table-btn" (click)="deleteUser(user._id)" ><i class="mdl2-delete"></i></button>
+            </td>
           </tr>
         </ng-container>
       </table>
