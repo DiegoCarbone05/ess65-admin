@@ -32,7 +32,9 @@ export class ApiService {
   }
 
   addUser(user: User) {
+    console.log(user);
     return this.http.post(this.urlApi+"/users", user);
+
   }
 
   setUser(user: User) {

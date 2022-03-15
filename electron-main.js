@@ -19,7 +19,7 @@ function createWindow () {
 
   setTimeout(()=>{
     splash.close();
-    win = new BrowserWindow({minWidth:720, webPreferences: {nodeIntegration: true,contextIsolation: false}})
+    win = new BrowserWindow({frame: false, minWidth:720, webPreferences: {nodeIntegration: true,contextIsolation: false}})
     win.loadURL('http://localhost:4200/')
     win.maximize();
   }, 5000)

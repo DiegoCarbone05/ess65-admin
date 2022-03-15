@@ -101,11 +101,10 @@ export class UserDialogComponent implements OnInit {
       })
     }
     else{
-      // console.log(this.user);
-      // return;
 
       this.userSvc.addUser(this.user).subscribe(res =>{
-        this.userSvc.getUsers()
+        this.userSvc.getUsers();
+
         this.dialogRef.close();
       })
     }

@@ -1,9 +1,9 @@
-<cne-nav>
+<!-- <cne-nav>
   Usuarios
   <div class="right-btn-container">
     <button class="nav-bar-btn" (click)="openUserDialog(false, '')"><i class="mdl2-add-friend"></i></button>
   </div>
-</cne-nav>
+</cne-nav> -->
 <mat-tab-group>
   <!-- Sector de alumnos -->
   <mat-tab label="Alumnos">
@@ -25,8 +25,8 @@
             <td>{{user.webRol}}</td>
             <td>{{user.turn}}</td>
             <td class="btn-td" >
-              <button class="table-btn" (click)="openUserDialog(true, user)"><i class="mdl2-edit"></i></button>
-              <button class="table-btn" (click)="deleteUser(user._id)" ><i class="mdl2-delete"></i></button>
+              <button class="table-btn" (click)="openUserDialog(true, user)"><mat-icon>edit</mat-icon></button>
+              <button class="table-btn" (click)="deleteUser(user._id)"><mat-icon>delete</mat-icon></button>
             </td>
           </tr>
         </ng-container>

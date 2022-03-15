@@ -1,19 +1,29 @@
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>
+<cne-title-bar></cne-title-bar>
 
-    <aside [class.aside-Active]="asideStatus">
-      <button (click)="openAside()" class="menu"></button>
-      <div class="wrap-Aside" [class.aside-Active]="asideStatus">
+<mat-toolbar>
+  <button (click)="openSidenav()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span>{{uiSvc.titleSeccionNav}}</span>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" *ngIf="authSvc.logged">
+  <mat-drawer #drawer mode="over" [opened]="uiSvc.sidenavStatus" style="overflow: hidden;">
+    <aside>
+      <div class="data-info-container">
+        <p class="user-public-name">Hola DiegoCarbone!</p>
+      </div>
+      <div class="wrap-Aside">
         <button *ngFor="let asideBtn of sidebarBtns; let index = index" class="btn-Seccion" (click)="asideBtnConfig(index, asideBtn.src)" [class.bottom]="asideBtn.bottomStatus">
-          <div class="btn-content">
-            <div class="icon"><div class="{{asideBtn.icon}}"></div></div>
-            <p *ngIf="asideStatus">{{asideBtn.text}}</p>
+          <div (click)="drawer.toggle()" class="btn-content">
+            <div class="icon"><mat-icon>{{asideBtn.icon}}</mat-icon></div>
+            <p>{{asideBtn.text}}</p>
           </div>
         </button>
       </div>
-      <div [class]="'pipe'" [style]="'transform: translate(0px,'+selectedSection+'px)'"></div>
+      <!-- <div [class]="'pipe'" [style]="'transform: translate(0px,'+selectedSection+'px)'"></div> -->
     </aside>
-
   </mat-drawer>
 
   <mat-drawer-content>
@@ -23,13 +33,4 @@
 </mat-drawer-container>
 
 
-<app-login *ngIf="false"></app-login>
-
-
-<!-- <main class="appBody" *ngIf="true">
-  <div id="aside" class="aside-Extended" [style]="aside"  *ngIf="false"></div>
-  <div class="main">
-
-
-  </div>
-</main> -->
+<app-login *ngIf="!authSvc.logged"></app-login>

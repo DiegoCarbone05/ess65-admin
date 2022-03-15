@@ -29,8 +29,8 @@ main{
         align-self: center;
       }
       p.title{
-        font-size: 30px;
-        font-weight: 100;
+        font-size: 20px;
+        font-weight: 400;
         margin: 0;
       }
 
@@ -88,12 +88,7 @@ main{
     }
   }
   .alert-controls{
-    height: 48px;
-    background-color: var(--aside-color);
-    margin: 20px 0;
     display: flex;
-    border: 1px solid var(--tertiary-gs);
-
 
     .control-bar-btn{
       width: 48px;
@@ -123,6 +118,8 @@ main{
       width: fit-content;
       padding: 0 20px;
     }
+
+
 
   }
 

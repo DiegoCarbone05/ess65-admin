@@ -20,58 +20,81 @@ $ess65web-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$ess65web-theme: mat.define-dark-theme((
+$ess65web-theme: mat.define-light-theme((
   color: (
     primary: $ess65web-primary,
     accent: $ess65web-accent,
     warn: $ess65web-warn,
-    )
-    ));
+  )
+));
 
-    // Include theme styles for core and each component used in your app.
-    // Alternatively, you can import and @include the theme mixins for each component
-    // that you are using.
-    @include mat.all-component-themes($ess65web-theme);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($ess65web-theme);
 
-    @import url(./assets/segoeUi.scss);
-
+@import url(./assets/segoeUi.scss);
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 *{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
   outline: none;
   // transition: all 0.6s cubic-bezier(0, 1.02, 0, 1.01) !important;
   font-style: normal;
+
 }
+body{
+  margin: 0;
+  padding: 0;
+  background-position: center;
+  background-color: var(--primary-gs);
+  overflow: hidden;
+  scrollbar-gutter: stable both-edges;
+
+}
+
+
+::ng-deep{
+
+  .mat-tab-nav-bar, .mat-tab-header{
+    border-bottom: solid 1px var(--tertiary-gs);
+  }
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background-color: white !important;
+  }
+  .mat-tab-header{
+    background-color: var(--primary-color);
+  }
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(128, 128, 128);
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: all 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(133, 133, 133);
+  transition: all 0.3s;
+}
+
+
 button{
   cursor: pointer;
   background: none;
   border: none;
   outline: none;
 
-  &:disabled{
-    color: rgb(158, 158, 158) !important;
-  }
 }
-
-body{
-  margin: 0;
-  padding: 0;
-  background-position: center;
-  background-color: var(--rOutlet-color);
-}
-
-// ::-webkit-scrollbar{
-//   background: red;
-
-//   &:hover{
-//     background: orangered;
-
-//   }
-// }
-// ::-webkit-scrollbar:hover{
-//   opacity: 1;
-// }
-
 
 :root{
   --titlebar-text-color:#FFF;
@@ -83,59 +106,75 @@ body{
   --danger-color:#FF5353;
   --info-color:#2ea9df;
   --success-color:#08BA89;
+
+  //Variables temporales
+  --gs:#FFF;
+  --primary-gs:#fafafa; //backgrounds; rOutlet;
+  --secondary-gs:#ebeaea; //aside and seccion
+
+  --nav-color:#f6f6f6;
+  --aside-color:#F2F2F2;
+  --rOutlet-color:#ffffff;
+  --object-color:#F2F2F2;
+
+  --tertiary-gs:#e6e6e6;
+  --lowOp-gs:#e7e7e7ea;
+
+  --text-color:#000;
+  --outline-selected-color: #3378BE;
+
+  --menu-icon:url('assets/icons/menuIcon.svg');
+  --themeMaterial:mat.define-light-theme;
+  --cne-logo:url('./assets/ilustrator/routlo-cne-logoWt.svg');
 }
 
 /* Light-mode */
-@media (prefers-color-scheme: light) {
-  :root{
-    --gs:#FFF;
-    --primary-gs:#f2f2f2; //backgrounds; rOutlet;
-    --secondary-gs:#ebeaea; //aside and seccion
+// @media (prefers-color-scheme: light) {
+//   :root{
+//     --gs:#FFF;
+//     --primary-gs:#fafafa; //backgrounds; rOutlet;
+//     --secondary-gs:#ebeaea; //aside and seccion
 
-    --nav-color:#f6f6f6;
-    --aside-color:#F2F2F2;
-    --rOutlet-color:#ffffff;
-    --object-color:#F2F2F2;
+//     --nav-color:#f6f6f6;
+//     --aside-color:#F2F2F2;
+//     --rOutlet-color:#ffffff;
+//     --object-color:#F2F2F2;
 
-    --tertiary-gs:#e6e6e6;
-    --lowOp-gs:#e7e7e7ea;
+//     --tertiary-gs:#e6e6e6;
+//     --lowOp-gs:#e7e7e7ea;
 
-    --text-color:#000;
-    --outline-selected-color: #3378BE;
+//     --text-color:#000;
+//     --outline-selected-color: #3378BE;
 
-    --menu-icon:url('assets/icons/menuIcon.svg');
-    --themeMaterial:mat.define-light-theme;
-    --cne-logo:url('./assets/ilustrator/routlo-cne-logoWt.svg');
-  }
+//     --menu-icon:url('assets/icons/menuIcon.svg');
+//     --themeMaterial:mat.define-light-theme;
+//     --cne-logo:url('./assets/ilustrator/routlo-cne-logoWt.svg');
+//   }
 
-}
-input{
-  border: none;
-  background: none;
-}
+// }
 
-@media (prefers-color-scheme: dark) {
-  :root{
-    --gs:#000;
-    --primary-gs:#171717;
-    --secondary-gs:#202020;
-    --tertiary-gs:#2F2F2F;
-    --blur-gs:#141414f1;
+// @media (prefers-color-scheme: dark) {
+//   :root{
+//     --gs:#000;
+//     --primary-gs:#303030;
+//     --secondary-gs:#202020;
+//     --tertiary-gs:rgb(66, 66, 66);
+//     --blur-gs:#141414f1;
 
-    --nav-color:#171717;
-    --aside-color:#1F1F1F;
-    --rOutlet-color:#171717;
-    --object-color:#1F1F1F;
+//     --nav-color:#171717;
+//     --aside-color:#1F1F1F;
+//     --rOutlet-color:#171717;
+//     --object-color:#1F1F1F;
 
-    --text-color:rgb(255, 255, 255);
+//     --text-color:rgb(255, 255, 255);
 
-    // Create the theme object. A theme consists of configurations for individual
-    --menu-icon:url('assets/icons/menuIconWt.svg');
-    --cne-logo:url('./assets/ilustrator/routlo-cne-logo.svg');
+//     // Create the theme object. A theme consists of configurations for individual
+//     --menu-icon:url('assets/icons/menuIconWt.svg');
+//     --cne-logo:url('./assets/ilustrator/routlo-cne-logo.svg');
 
-  }
+//   }
 
-}
+// }
 
 .cne-metro-button{
   padding: 0 10px;

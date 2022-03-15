@@ -1,23 +1,15 @@
-*{
-  -webkit-app-region: drag;
-
-}
 .title-bar{
   grid-row: 0/1;
   grid-column: 1/3;
-  background-color: var(--primary-color);
+  background-color: #01508f;
   display: flex;
   justify-content: center;
   vertical-align: middle;
   width: 100%;
-  height: 32px;
-  -webkit-app-region: drag !important;
-
-  position: fixed;
-  z-index: 1001;
+  height: 24px;
+  app-region: drag;
 
   .title{
-    position: fixed;
     align-self: center;
     font-size: 12px;
     text-overflow:ellipsis;
@@ -33,18 +25,19 @@
     right: 0;
     z-index: 99;
     -webkit-app-region: no-drag;
-    height: 32px;
+    height: 24px;
+    width: 100px;
     margin-left: 5px;
+    app-region: no-drag;
 
     .windows-icon-bg{
       display: inline-block;
       height: 100%;
-      width: 46px;
+      width: 100%;
       background: none;
       border: none;
       cursor: pointer;
       color: white;
-
 
       .win-icon{
         font-size: 10px;

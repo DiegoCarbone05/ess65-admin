@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -10,13 +11,25 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   loginControl!:FormGroup
-
   hide = true;
-  constructor() { }
+  activeLocalStorage!:boolean
+
+  constructor(private authSvc:AuthService) { }
 
   currentUser = {
     'name':'',
     'password':''
+  }
+  valueChange(e:any){
+    this.activeLocalStorage = e.checked
+
+  }
+  ngOnInit(): void {
+    this.loginControl = new FormGroup({
+      // Formularios
+      userName: new FormControl('', [Validators.required]),
+      namePassword: new FormControl('', [Validators.required]),
+    });
   }
 
   getErrorMessage(controlName: string) {
@@ -26,16 +39,8 @@ export class LoginComponent implements OnInit {
     return "";
   }
 
-  ngOnInit(): void {
-    this.loginControl = new FormGroup({
-      // Formularios
-      userName: new FormControl('', [Validators.required]),
-      namePassword: new FormControl('', [Validators.required]),
-    });
-  }
-
   submitForm(){
-    console.log(this.currentUser);
+    this.authSvc.login(this.currentUser, this.activeLocalStorage)
   }
 
 

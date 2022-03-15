@@ -14,6 +14,10 @@ import { CardGroupComponent } from './card-group/card-group.component';
 import {MatInputModule} from '@angular/material/input';
 import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 import {MatRippleModule} from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +38,10 @@ import {MatRippleModule} from '@angular/material/core';
     MatMenuModule,
     MatInputModule,
     NgxMatColorPickerModule,
-    MatRippleModule
+    MatRippleModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatCardModule
   ],
   providers:[
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }

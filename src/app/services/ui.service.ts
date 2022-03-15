@@ -3,7 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class UtilsService {
+export class UiService {
 
   constructor() { }
+
+  sidenavStatus = false;
+  titleSeccionNav!:string;
+
 }

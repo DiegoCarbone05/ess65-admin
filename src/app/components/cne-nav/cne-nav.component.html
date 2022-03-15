@@ -1,1 +1,6 @@
-<nav [class.outlineActive]="outline"><ng-content></ng-content></nav>
+<nav [class.outlineActive]="outline">
+  <!-- <button (click)="openAside()" matRipple class="menu"><mat-icon>menu</mat-icon></button> -->
+  <div class="nav-content">
+    <ng-content></ng-content>
+  </div>
+</nav>

@@ -4,7 +4,7 @@
     <div class="title-container">
       <p class="title">Configuracion del Banner</p>
     </div>
-    <button cne-metro-button (click)="saveChanges()" class="cne-metro-button win-btn">Guardar cambios</button>
+    <button (click)="saveChanges()" class="cne-metro-button win-btn">Guardar cambios</button>
   </div>
 
   <!-- Banner Preview -->
@@ -47,14 +47,6 @@
   </div>
 
   <!-- Editor de Imagen -->
-  <div class="banner-controls-editor">
-
-    <mat-form-field class="title-banner-input" appearance="legacy">
-      <mat-label>Descripcion</mat-label>
-      <input matInput>
-    </mat-form-field>
-
-  </div>
 
   <!-- Editor del boton -->
   <div class="banner-controls-editor">
@@ -83,4 +75,15 @@
     </mat-form-field>
 
   </div>
+
+
+  <div class="banner-controls-editor">
+
+    <mat-form-field class="title-banner-input" appearance="legacy">
+      <mat-label>Descripcion</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+  </div>
+
 </main>

@@ -1,17 +1,35 @@
 nav{
   width: 100%;
   height: 48px;
-  background-color: var(--nav-color);
+  background-color: var(--primary-color);
   display: flex;
   align-items: center;
-  padding-left: 20px;
   box-sizing: border-box;
-  justify-content: space-between;
-  color: var(--text-color) ;
+  color: white ;
 
 
   &.outlineActive{
     border-bottom: 1px solid var(--tertiary-gs);
   }
+
+  button.menu{
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
+    margin-right: 10px;
+    color: white;
+    position: absolute;
+    z-index: 6;
+
+  }
+
+  .nav-content{
+    height: 48px;
+    margin-left: 65px;
+    display: flex;
+    align-items: center;
+  }
+
 }
 

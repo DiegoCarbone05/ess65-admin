@@ -1,3 +1,5 @@
+
+
 .form-container{
   width: 100%;
   height: 100%;
@@ -7,7 +9,6 @@
 
   form{
     width: 430px;
-    height: 388px;
     background-color: var(--aside-color);
     padding: 40px;
     box-sizing: border-box;
@@ -15,6 +16,7 @@
     box-shadow: 0 10px 30px #0000002d;
     display: flex;
     flex-direction: column;
+    color: var(--text-color);
 
     .form-logo{
       width: 252px;
@@ -32,20 +34,21 @@
       align-self: flex-end;
       margin-top: auto;
       margin-bottom: 0;
-      color: var(--text-color) !important;
-
-      &:disabled{
-        color: gray !important;
-        border: 1px solid;
-      }
     }
 
   }
 
 }
+
+
 ::ng-deep{
 
   .mat-form-field-appearance-fill .mat-form-field-flex{
     background: none;
+  }
+
+  .mat-checkbox-ripple .mat-ripple-element,
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: var(--primary-color) !important;
   }
 }
