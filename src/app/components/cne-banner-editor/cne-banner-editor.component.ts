@@ -74,22 +74,6 @@ export class CneBannerEditorComponent implements OnInit {
     this.loadLastChanges();
 
     //Plasmando los datos del Json a los inputs
-    const temp = this.hexToRgb('#00ff00');
-    if(temp)
-    this.pickerInput.value = new Color(temp.r, temp.g, temp.b);
-  }
-
-  hexToRgb(hex:string) {
-    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, (m, r, g, b) => {
-      return r + r + g + g + b + b;
-    });
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
   }
 
   subirArchivos() {

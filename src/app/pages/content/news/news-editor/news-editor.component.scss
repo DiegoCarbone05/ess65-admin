@@ -1,0 +1,54 @@
+.wrap-news-editor{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .card{
+    width: 100%;
+    height: 110px;
+    padding: 0 30px;
+    background: #FFFFFF;
+    border: 1px solid #C8C8C8;
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+
+    p{
+      margin: 0;
+    }
+
+    .title-card{
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  .wrap-card-editor{
+    width: 100%;
+    .controls{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+
+  .check-container{
+    width: fit-content;
+    display: flex;
+    gap: 24px;
+  }
+
+}
+.add-news{
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: var(--primary-color);
+}
+

@@ -17,7 +17,8 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
-
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {MatCardModule} from '@angular/material/card';
     CneInputComponent,
     CneTitleBarComponent,
     CardGroupComponent,
+    ConfirmDialogComponent,
 
   ],
   imports: [
@@ -41,7 +43,8 @@ import {MatCardModule} from '@angular/material/card';
     MatRippleModule,
     MatIconModule,
     MatSidenavModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers:[
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }

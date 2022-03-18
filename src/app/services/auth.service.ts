@@ -12,6 +12,7 @@ export class AuthService {
   logged = false
   usersList!:User[]
   currentUser = new BehaviorSubject<User | undefined>(undefined);
+  lsVerificationAuth:any = undefined
 
 
 
@@ -24,6 +25,7 @@ export class AuthService {
         if(ls) this.localStorageAuth(ls)
       }
     })
+
   }
 
   getCurrentUserData(){
@@ -31,36 +33,43 @@ export class AuthService {
     this.userSvc.users$.subscribe((userListParam)=>{
       var ls = localStorage.getItem('auth')
       currentUser = userListParam.find( user => user._id === ls);
-      console.log('a: ',currentUser);
     })
 
     return currentUser
   }
 
   localStorageAuth(id:string){
-    console.log(this.usersList);
     const userFinded = this.usersList.find( user => user._id === id);
 
     if (userFinded?.webRol === "admin") {
       this.logged = true
+      this.lsVerificationAuth = true
       this.currentUser.next(userFinded);
     }
-
+    else{
+      this.logged = false
+      this.lsVerificationAuth = false
+    }
   }
-
-
 
   login(userLogData:any, ls:boolean){
 
     const userFinded = this.usersList.find( user => user.name === userLogData.name );
+    var status
 
     if (userFinded?.password == userLogData.password && userFinded?.webRol == "admin") {
       this.logged = true
       this.currentUser.next(userFinded)
+      status = true
       if (ls) {
         localStorage.setItem('auth', userFinded._id || userFinded.name);
       }
     }
+    else{
+      status = false
+    }
+
+    return status
 
   }
 

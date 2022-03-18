@@ -1,0 +1,35 @@
+<div class="wrap-news-editor" [formGroup]="formGroup">
+
+  <cne-alert-editor *ngIf="formGroup.controls['showInAlert'].value"></cne-alert-editor>
+  <br>
+  <p>Agregar Noticia</p>
+  <div class="card">
+    <p class="title-card">{{formGroup.controls['title'].value}}</p>
+    <p>{{ currentTime | date:'dd/MM/YYYY' }}</p>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Título</mat-label>
+    <input placeholder="Ingrese titulo" formControlName="title" matInput>
+    <mat-error *ngIf="formGroup.controls['title'].invalid">Campo inválido</mat-error>
+  </mat-form-field>
+  <mat-checkbox formControlName="showInAlert">Mostrar esta noticia en la alerta</mat-checkbox>
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  <p>Cursos de la mañana que pueden ver la noticia</p>
+  <div class="check-container">
+    <mat-checkbox *ngFor="let year of yearsOptions" (change)="selectYearAndTurn(year,'a',$event)">{{year}} Año</mat-checkbox>
+  </div>
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  <p>Cursos de la tarde que pueden ver la noticia</p>
+  <div class="check-container">
+    <mat-checkbox *ngFor="let year of yearsOptions" (change)="selectYearAndTurn(year,'b',$event)">{{year}} Año</mat-checkbox>
+  </div>
+</div>
+
+<button (click)="saveData()" [disabled]="!formGroup.valid" class="add-news" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+  <mat-icon>save</mat-icon>
+</button>

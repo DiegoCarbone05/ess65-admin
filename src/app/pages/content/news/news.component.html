@@ -1,0 +1,27 @@
+<div class="wrap-news">
+
+  <main>
+    <div class="wrap-card-editor" *ngIf="uiSvc.editMode">
+      <app-news-editor></app-news-editor>
+    </div>
+    <div class="wrap-news-cards" *ngIf="!uiSvc.editMode">
+      <br>
+      <p>Noticias</p>
+
+      <div class="card" *ngFor="let news of newsData">
+        <div class="text-content">
+          <p class="title-card">{{news.title}}</p>
+          <p>{{news.date | date:'dd/MM/YYYY'}}</p>
+        </div>
+        <button (click)="deleteNews(news._id)" class="delete-news">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <button (click)="openNewsEditor()" class="add-news" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </main>
+
+</div>

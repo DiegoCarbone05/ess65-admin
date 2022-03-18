@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfigComponent } from './pages/config/config.component';
-import { NewsComponent } from './pages/news/news.component';
+import { ContentComponent } from './pages/content/content.component';
 import { UsersComponent } from './pages/users/users.component';
-import { WebConfigComponent } from './pages/web-config/web-config.component';
 
 const routes: Routes = [
-  {path: '', component: WebConfigComponent},
+  {path: '', component: ContentComponent},
   {path: 'users', component: UsersComponent},
-  {path: 'news', component: NewsComponent},
   {path: 'config', component: ConfigComponent},
 ];
 

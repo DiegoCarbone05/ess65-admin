@@ -1,28 +1,32 @@
 <cne-title-bar></cne-title-bar>
 
-<mat-toolbar>
+<mat-toolbar *ngIf="authSvc.logged">
   <button (click)="openSidenav()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <span>{{uiSvc.titleSeccionNav}}</span>
+  <span>{{titleSeccionNav}}</span>
 </mat-toolbar>
 
 <mat-drawer-container class="example-container" *ngIf="authSvc.logged">
+
   <mat-drawer #drawer mode="over" [opened]="uiSvc.sidenavStatus" style="overflow: hidden;">
     <aside>
       <div class="data-info-container">
-        <p class="user-public-name">Hola DiegoCarbone!</p>
+        <p class="user-public-name">Hola {{currentUser.name}}!</p>
+        <a class="close-session" (click)="closeSession()">Cerrar sesion</a>
       </div>
-      <div class="wrap-Aside">
-        <button *ngFor="let asideBtn of sidebarBtns; let index = index" class="btn-Seccion" (click)="asideBtnConfig(index, asideBtn.src)" [class.bottom]="asideBtn.bottomStatus">
-          <div (click)="drawer.toggle()" class="btn-content">
-            <div class="icon"><mat-icon>{{asideBtn.icon}}</mat-icon></div>
-            <p>{{asideBtn.text}}</p>
-          </div>
-        </button>
-      </div>
-      <!-- <div [class]="'pipe'" [style]="'transform: translate(0px,'+selectedSection+'px)'"></div> -->
+
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let asideBtn of sidebarBtns; let index = index">
+          <button  class="btn-Seccion" (click)="asideBtnConfig(index, asideBtn.src)" [class.bottom]="asideBtn.bottomStatus">
+            <div (click)="drawer.toggle()" class="btn-content">
+              <div class="icon"><mat-icon [class]="asideBtn.mode">{{asideBtn.icon}}</mat-icon></div>
+              <p>{{asideBtn.text}}</p>
+            </div>
+          </button>
+        </mat-list-item>
+      </mat-list>
     </aside>
   </mat-drawer>
 

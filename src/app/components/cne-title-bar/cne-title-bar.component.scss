@@ -1,7 +1,7 @@
 .title-bar{
   grid-row: 0/1;
   grid-column: 1/3;
-  background-color: #01508f;
+  background-color: var(--secondary-color);
   display: flex;
   justify-content: center;
   vertical-align: middle;

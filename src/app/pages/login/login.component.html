@@ -1,5 +1,12 @@
 <div class="form-container">
-  <form (ngSubmit)="submitForm()" [formGroup]="loginControl">
+
+    <pleace-holder-billboard *ngIf="authSvc.lsVerificationAuth == false"></pleace-holder-billboard>
+
+  <div class="wrap-alert " [class.activeAlert]="statusLogin == false">
+    <span>Error al iniciar sesion, compruebe el formulario</span>
+  </div>
+
+  <form *ngIf="!lsStatus" (ngSubmit)="submitForm()" [formGroup]="loginControl">
     <div class="form-logo"></div>
     <br>
     <mat-form-field appearance="fill">
@@ -20,6 +27,8 @@
     <mat-checkbox class="example-margin"  (change)="valueChange($event)">Mantener la sesion iniciada</mat-checkbox>
     <br>
     <button [disabled]="loginControl.invalid" class="btn-submit" mat-button>Iniciar sesion</button>
-
   </form>
+  <br><br><br><br><br>
+  <br><br><br><br><br>
+
 </div>

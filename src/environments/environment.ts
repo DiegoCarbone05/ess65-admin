@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApi: 'http://localhost:3000/api',
+  // baseApi: 'http://localhost:3000/api',
+  baseApi: 'https://ess65-backend.herokuapp.com/api',
 };
 
 /*

@@ -13,8 +13,12 @@ export class LoginComponent implements OnInit {
   loginControl!:FormGroup
   hide = true;
   activeLocalStorage!:boolean
+  statusLogin!:any
+  lsStatus = localStorage.length
 
-  constructor(private authSvc:AuthService) { }
+  constructor(public authSvc:AuthService) {
+
+  }
 
   currentUser = {
     'name':'',
@@ -22,8 +26,8 @@ export class LoginComponent implements OnInit {
   }
   valueChange(e:any){
     this.activeLocalStorage = e.checked
-
   }
+
   ngOnInit(): void {
     this.loginControl = new FormGroup({
       // Formularios
@@ -39,8 +43,17 @@ export class LoginComponent implements OnInit {
     return "";
   }
 
+
   submitForm(){
-    this.authSvc.login(this.currentUser, this.activeLocalStorage)
+    this.statusLogin = this.authSvc.login(this.currentUser, this.activeLocalStorage)
+
+    if(!this.statusLogin){
+      setTimeout(()=>{
+
+        this.statusLogin = undefined
+
+      },4000)
+    }
   }
 
 

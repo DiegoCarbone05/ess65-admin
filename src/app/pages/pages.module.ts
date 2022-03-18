@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WebConfigComponent } from './web-config/web-config.component';
 import { ComponentsModule } from '../components/components.module';
 import { UsersComponent } from './users/users.component';
-import { NewsComponent } from './news/news.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ConfigComponent } from './config/config.component';
@@ -22,15 +20,24 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { PleaceHolderBillboardComponent } from './login/pleace-holder-billboard/pleace-holder-billboard.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ContentComponent } from './content/content.component';
+import { HomeComponent } from './content/home/home.component';
+import { NewsComponent } from './content/news/news.component';
+import { NewsEditorComponent } from './content/news/news-editor/news-editor.component';
 
 @NgModule({
   declarations: [
-    WebConfigComponent,
     UsersComponent,
-    NewsComponent,
     ConfigComponent,
     UserDialogComponent,
     LoginComponent,
+    PleaceHolderBillboardComponent,
+    ContentComponent,
+    HomeComponent,
+    NewsComponent,
+    NewsEditorComponent
 
   ],
   imports: [
@@ -50,12 +57,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatCheckboxModule,
     MatExpansionModule,
     MatDividerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule
   ],
   exports: [
-    WebConfigComponent,
     UsersComponent,
-    NewsComponent,
     ConfigComponent,
     UserDialogComponent,
     LoginComponent,

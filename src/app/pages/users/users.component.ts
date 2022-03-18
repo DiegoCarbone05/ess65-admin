@@ -47,7 +47,6 @@ export class UsersComponent implements OnInit {
     this.userSvc.removeUser(userId).subscribe((value)=>{
       this.userSvc.getUsers()
     })
-    console.log(userId);
 
   }
 

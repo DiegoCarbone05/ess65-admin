@@ -1,5 +1,7 @@
+import { News } from './../models/news';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { share } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import * as data from '../samples/data.json';
@@ -14,6 +16,17 @@ export class ApiService {
   globalDataWeb: any = data;
   usersJson: any = users;
   urlApi = environment.baseApi;
+
+  //ENPOINTS NEWS
+  getNewsData(){
+    return this.http.get<any[]>(this.urlApi+"/news").pipe(share());
+  }
+  setNewsData(news:News){
+    return this.http.post(this.urlApi+"/news", news);
+  }
+  deleteNews(_id:any){
+    return this.http.delete(this.urlApi+"/news" + `/${_id}`);
+  }
 
   //ENPOINTS STATIC CONTENT
   getStaticConfig(){

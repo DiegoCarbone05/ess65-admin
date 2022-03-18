@@ -45,7 +45,7 @@ main{
     .img{
       width: 100%;
       height: 100%;
-      background: url('/assets/ilustrator/photo-1497864149936-d3163f0c0f4b.jpg');
+      background: url('https://ess65-backend.herokuapp.com/api/staticContent/bannerImage/');
       background-position: center;
       background-size: cover !important;
       display: flex;
@@ -74,9 +74,8 @@ main{
           margin: 1vw 0;
         }
 
-        .titleBanner{
+        .title-banner{
           font-size: 35px;
-          width: 402.15px;
           font-weight: bold;
           margin: 0;
           box-sizing: border-box;
@@ -84,7 +83,6 @@ main{
           font-weight: 600;
           line-height: 3rem;
         }
-
 
         button{
           font-size: 15px;
@@ -115,7 +113,6 @@ main{
           }
         }
       }
-
 
     }
 
@@ -279,13 +276,30 @@ main{
      color: var(--text-color) !important;
    }
 }
-@media screen and (max-width:1235px){
+@media only screen and(max-width:1235px){
   main{
     width: 90vw;
 
     .wrap-peview{
       width: 90vw;
       height: 37.1vw;
+
+      .bannerContent{
+        margin-left: 8vw !important;
+        width: 32.8vw  !important;
+
+        .title-banner{
+          font-size: 3.01vw !important;
+          line-height: 4vw !important;
+        }
+
+        .desc-banner{
+          font-size: 1.2vw !important;
+
+        }
+      }
+
+
 
       & button{
         width: 138px;

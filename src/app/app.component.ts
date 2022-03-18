@@ -5,7 +5,6 @@ import { AuthService } from './services/auth.service';
 import { ElectronService } from './services/electron.service';
 import { UiService } from './services/ui.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,66 +13,73 @@ import { UiService } from './services/ui.service';
 export class AppComponent {
   title = 'Ess65Admin';
   asideStatus = false;
-
-  @ViewChild("drawer") sideNav!:ElementRef
+  titleSeccionNav = "";
+  @ViewChild('drawer') sideNav!: ElementRef;
 
   btnAside!: string;
   aside!: string;
-  currentUser!:any
+  currentUser!: any;
 
   selectedSection = 60;
 
-  sidebarBtns:any[] = [];
+  sidebarBtns: any[] = [];
 
   constructor(
     public router: Router,
     public electronSvc: ElectronService,
     public authSvc: AuthService,
-    public uiSvc:UiService
+    public uiSvc: UiService
   ) {
     this.authSvc.currentUser.subscribe((user) => {
-      this.currentUser = user
+      this.currentUser = user;
     });
     this.sidebarBtns = [
-      { icon: 'home', text: 'Inicio', src: '/', bottomStatus: false },
+      {
+        icon: 'view_quilt',
+        text: 'Contenido',
+        src: '/',
+        mode: 'material-icons-outlined',
+        bottomStatus: false
+      },
       {
         icon: 'people',
         text: 'Usuarios',
         src: 'users',
+        mode: 'material-icons',
         bottomStatus: false,
       },
       {
         icon: 'newspaper',
         text: 'Noticias',
         src: 'news',
+        mode: 'material-icons-outlined',
         bottomStatus: false,
       },
       {
         icon: 'settings',
         text: 'Configuracion',
         src: 'config',
+        mode: 'material-icons',
         bottomStatus: false,
       },
     ];
   }
 
-
-
   ngOnInit() {
     this.electronSvc.onReadyAngular();
-    // this.sideNav.toggle()
+    this.titleSeccionNav = this.uiSvc.titleSeccionNav;
+    //this.openSidenav();
   }
 
-  openSidenav(){
+  openSidenav() {
+    this.uiSvc.touchSound();
+
     (<any>this.sideNav).toggle();
-  }
-
-  openAside(){
-    this.uiSvc.sidenavStatus = !this.uiSvc.sidenavStatus
   }
 
   asideBtnConfig(sectionName: any, router: any) {
     this.selectedSection = sectionName * 48 + 60;
+    this.uiSvc.touchSound();
 
     this.router.navigateByUrl(router);
     this.btnAside = '';
@@ -81,5 +87,9 @@ export class AppComponent {
     this.btnAside = '';
     this.aside = '';
     this.asideStatus = false;
+  }
+  closeSession() {
+    localStorage.removeItem('auth');
+    location.reload();
   }
 }
